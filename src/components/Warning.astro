@@ -1,0 +1,45 @@
+---
+const { id, title, remove_button="False"} = Astro.props;
+---
+
+<style>
+    .background-red{
+        background-color: #f0e0e0;
+        border: 1px solid #444;
+        border-radius: 5px;
+    }
+</style>
+
+
+<div class="my-2 text-black">
+    <div class="background-red d-flex flex-column">
+        <div id={'warning_'+id} class='overflow-hidden d-flex flex-row align-items-center'>
+            <button class={remove_button != "False" ? "btn btn-secondary d-none fw-bold" : "btn btn-secondary fw-bold"} id={'warning_btn_'+id}>+</button>
+            <div class={remove_button != "False" ? `p-2` : 'px-2'}>
+                <span set:html={"<strong>Warning:</strong> " + title}></span>{<small>{` #${id}`}</small>}
+            </div>
+        </div>
+        
+        <div id={'warning_menu_'+id} class={remove_button != "False" ? `p-0` : 'p-2'} >
+            <div class="w-100">
+                <slot />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script define:vars={{id}} is:inline>
+    $(document).ready(function(){
+        const menu = $(`#warning_menu_${id}`)
+        menu.hide();
+        const button = $(`#warning_btn_${id}`);
+        
+        button.on('click', function(){
+            menu.slideToggle('fast', function(){
+                button.text(button.text() == '+' ? '-' : '+')
+            })
+        })
+    });
+</script>

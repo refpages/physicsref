@@ -1,0 +1,17 @@
+.card-grid-simple li:hover{
+    font-weight: bold;
+}
+
+.card-grid-simple a{
+    color: var(--bs-text-body);
+    text-decoration: none;
+}
+
+section li:hover{
+    font-weight: bold;
+}
+
+section > ol > li > a{
+    color: var(--bs-text-body);
+    text-decoration: none;
+}

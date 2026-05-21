@@ -1,0 +1,1660 @@
+---
+import Layout from "../../layouts/BlankLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CodeBox from "../../components/CodeBox.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import DisplayEquationCustom from "../../components/DisplayEquationCustom.astro";
+import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutContainerContainer from "../../components/special/CalloutContainerContainer.astro";
+import Image from "../../components/Image.astro";
+import DisplayTable from "../../components/DisplayTable.astro";
+import Itemize from "../../components/Itemize.astro";
+import Enumerate from "../../components/Enumerate.astro";
+import Item from "../../components/Item.astro";
+import Example from "../../components/Example.astro"
+import Row from "../../components/Row.astro"
+import Col from "../../components/Col.astro"
+import Warning from "../../components/Warning.astro"
+import Plotly from "../../components/Plotly.astro";
+import Slideshow from "../../components/Slideshow.astro";
+
+
+---
+
+<style>
+    red-text{
+        background-color: red;
+        color: black;
+    }
+
+
+</style>
+
+<Layout title="Style guide & documentation">
+
+<div slot="navtree">
+    <ul class='list-group list-group-flush py-0'>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#components'>Components</a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#importing'>Importing</a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#inserting'> Inserting </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#branding'> Branding </a></li>
+        <ul class='list-group list-group-flush py-0'>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#fig-brand'> Figure branding </a></li>
+        </ul>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#general-page-format'> General format </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#section-types'> Section types </a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#section'> Title </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#sub-section'> Sections </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#sub-sub-section'> Sub sections </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#sub-sub-sub-section'> Sub sub sections </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#paragraph-font'>Paragraph and font options</a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#new-paragraph'> New pragraph </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#lists'> Lists </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#numbered-lists'> Numbered lists </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#multi-column'> Multicolumn </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#italics'> Italics </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#bold'> Bold </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#underline'> Underline </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#font-customizations'> Other </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#nav-tree'> Navigation tree </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#links'> Inserting links </a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#same-page'> Within </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#int-page'> physicsref </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#ext-page'> External </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#ext-video'> Video </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#callout-cards'> Callout cards </a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#review'> Review </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#supplemental'> Supplemental material </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#extra'> Extra info</a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#applications'> Applications</a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#images'> Images </a></li> 
+        <!-- <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#animations'> Animations </a></li> -->
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#graphs'> Graphs </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#equations'> Equations </a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#inline-eq'> Inline </a></li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#display-eq'> Display </a>
+                    <ul class='list-group list-group-flush py-0'>
+                        <li class='list-group-item py-0'><a class='text-decoration-none subsubsubsection' href='#single-eq'> Single </a></li>
+                        <li class='list-group-item py-0'><a class='text-decoration-none subsubsubsection' href='#multiple-eq'> Multiple </a></li>
+                        <li class='list-group-item py-0'><a class='text-decoration-none subsubsubsection' href='#derived-eq'> Derived </a></li>
+                        </ul>
+                </li>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#custom-eq'> Custom </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#tables'> Tables </a>
+            <ul class='list-group list-group-flush py-0'>
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#table-customizations'> Customizations </a></li>
+            </ul>
+        </li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#examples'> Examples </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#notes'> Notes </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#warnings'> Warnings </a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#code-box'> Codebox </a></li>
+    </ul>
+</div>
+    
+
+<Section title="Style guide & documentation" id="style-guide">
+
+The aim of using components is to maintain a consistant look and feel throughout the website, as well as being able to make changes without having to go through every page.
+
+When relevant, we've tried to maintain the LateX naming scheme for ease of use by those coming directly from it with little coding experience. For example:
+<ul>
+<li> \item =&gt; `Item`</li>
+<li> \itemize =&gt; `Itemize`</li>
+<li> \enumerate =&gt; `Enumerate`</li>
+</ul>
+<p>
+    "Components" and "elements" will be used interchangeably throughout this document. Use the navigation bar to find the component you are interested in. 
+</p>
+
+<p>
+    The <a href="/about/examples/example">starter page</a> contains the basics to get you started, such as section content, navigation bar, adding an image, and adding equations. 
+    This syle guide contains indepth information about formatting, branding, and template code for different components. 
+    When clicking on template code blocks, the code in the block will be copied to your clipboard.
+</p>
+
+<p>
+    Potential solutions to common problems when creating pages are on the <a href="/about/troubleshooting">troubleshooting page</a>.
+    If a problem is still unsolvable after consulting the troubleshooting page, please submit an official issue on the github. 
+</p>
+    
+</Section>
+
+<SubSection title="Components" id="components">
+     
+</SubSection>
+
+<SubSubSection title="Importing" id="importing">
+    Make sure to import the element at the top of the page before using it. If you get an error like `XXX is not defined`, this is typically what it's refering to. To import an element, use the following syntax.
+    <CodeBox code=`import Component from '../../components/Component.astro'` />
+    `Component` refers to the name of the component you want to import.
+</SubSubSection>
+
+<SubSubSection title="Inserting"  id="inserting">
+<p>
+All tags must be closed, which means when you add an element to the page, you must close it to indicate the beginning and the end of that element. 
+</p>
+Elements can be in two states: regular or self-closed. Regular means it follows the convention below.
+<CodeBox language="html" code=`
+<Component> Content goes here... </Component>
+` />
+<p>
+Notice how the component has two tags, one start tag and one end tag with a forward-slash. This allows us to insert content inside the element when supported.
+</p>
+
+Self-closing tags follow another convention.
+<CodeBox language="html" code=`<Component />
+` />
+<p>
+Now, the component only has one tag, essentially combining both the start and end tag. The component will still load, but we cannot insert any content inside it.
+</p> 
+
+<p>
+Depending on that state, the behavior of the component might be different. 
+</p> 
+For example, let's take the `&ltDisplayEquation&gt` component. When declared with self closing tags, it will simply be displaying an equation that take up the entire width of the screen (or whichever element it's inside of):
+
+<CodeBox language="html" code=`
+<DisplayEquation title="Normalization to unit vector." id="rvv-eu1" background="True" equation="\\\\begin{aligned} \\\\hat{a} =\\\\frac{\\\\vec{a}}{a}\\\\end{aligned}"/>
+` />
+<DisplayEquation title="Normalization to unit vector." id="rvv-eu1" background="True" equation="\\begin{aligned} \\hat{a} =\\frac{\\vec{a}}{a}\\end{aligned}"/>
+
+But when in regular mode, whatever content we add inside of it will now be displayed inside the derivation menu:
+
+<CodeBox language="html" code=`
+<DisplayEquation title="Normalization to unit vector." id="rvv-eu2" background="True" equation="\\begin{aligned} \\\\hat{a} =\\\\frac{\\\\vec{a}}{a}\\\\end{aligned}" derivation="True">
+    <p>Content goes here:</p>
+    <DisplayEquation equation="\\\\vec{v} = \\\\vec{\\\\omega} \\\\times \\\\vec{r}"/>
+</DisplayEquation>
+` />
+<DisplayEquation title="Normalization to unit vector." id="rvv-eu2" background="True" equation="\\begin{aligned} \\hat{a} =\\frac{\\vec{a}}{a}\\end{aligned}" derivation="True">
+    <p>Content goes here:</p>
+    <DisplayEquation equation="\\vec{v} = \\vec{\\omega} \\times \\vec{r}"/>
+</DisplayEquation>
+
+This concept is very important, and applies to almost every component. The different behaviors will be discussed when explaining the different uses of each component.
+</SubSubSection>
+
+
+<SubSection title ="Branding" id="branding">
+   <p>
+        For U of I affiliated pages, use the university specified <a href="https://brand.illinois.edu/visual-identity/color">branding</a>. 
+        physicsref has three U of I specific colors defined as variables:
+    </p> 
+        <ul>
+            <li>--illini-blue: Illinois blue</li>
+            <li>--illini-orange: Illinois orange</li>
+            <li>--altgeld-orange: A darker version of orange, having more contrast than Illinois orange, meant to be more accessible.</li>
+        </ul>
+        
+        To change the color to text, you can either enter a hex code, or type in common color names. 
+   
+        <CodeBox code=`<span style="color: #000000">Text</span>` />
+
+        For U of I colors,  make sure to wrap the variable with `var()`, and to not forget the `--`.
+        <CodeBox language="html" code=`
+       <span style="color: var(--illini-blue);">Text, </span><span style="color: var(--altgeld-orange);">and more text</span> 
+    
+        ` />
+        <span style="color: var(--illini-blue);">Text, </span><span style="color: var(--altgeld-orange);">and more text</span> 
+  
+
+    </SubSection>
+       
+    <SubSubSection title = "Figure branding" id="fig-brand">
+    <p>All content figures should have the following components colored the same so there is continuity between courses. </p>
+
+        <Itemize>
+            <Item>Background: White (#FFFFFF) or light gray (#FCF9F3) </Item>
+                <Itemize>
+                    <Item> Hand drawn: gray (#C5C3BB) grid </Item>
+                    <Item> Computer generated: No grid </Item>
+                </Itemize>
+            <Item>Objects: <span style="color: var(--illini-orange)">orange (#FFF1DB)</span> with a black (#000000) boarder/details </Item>
+            
+            <Item>Axes and dimensions: <span style="color: black">black (#000000)</span></Item>
+            <Item>Fixed wall or ground: <span style="color: #747371">gray (#969696)</span></Item>
+        </Itemize>
+
+    <p> Other colors to use on figures are as follows with how they are reccomended to be used. 
+        These do not need to be consistent between courses, but they should be consistent within a course. </p>
+
+        <Itemize>
+            <Item>Loadings: <span style="color: #ed3624">red (#ED3624)</span> </Item>
+            <Item>Reactions (ie; stress, displacements, accelerations, etc.): <span style="color: #006FFF">blue (#006FFF)</span></Item>
+            <Item>Other: <span style="color: #60BA46">green (#60BA46)</span> and <span style="color: #A400C7">purple (#A400C7)</span> </Item>
+        </Itemize>
+
+    Example: 
+
+        <Row>
+            <Col values="12 md-6">
+                <Image src="/sol/axial_loading/Notation.png" width="7"></Image>
+            </Col>
+            <Col values="12 md-6">
+                <PrairieDrawCanvas id="rkg-fw-c" height="300" width="300">
+                    
+                  </PrairieDrawCanvas>
+            </Col>
+        </Row>
+
+
+    </SubSubSection>
+
+<SubSection title="General page format" id="general-page-format">
+   <p>
+    The general format for a page is as follows. Parts can be removed as needed, but try not to rearrange them.
+   </p> 
+<strong> Page section order:</strong>
+    <Enumerate>
+        <Item>Section - Pagle title.</Item>
+        <Item>Page intro/description.</Item>
+        <Item>SubSection - Units. </Item>
+        <Item>SubSection -Notation and sign convention.</Item>
+        <Item>SubSection(s) - Page content.</Item>
+        <Item>SubSection -Applications.</Item>
+    </Enumerate>
+
+<strong> Within page section order:</strong>
+    <Enumerate>
+        <Item>Code for callout card (This will display at the top on mobile and on the right-hand side on desktops).</Item>
+        <Item>Figure.</Item>
+        <Item>Equation(s).</Item>
+        <Item>Text.</Item>
+        <Item>Repeat 2-4 as needed. </Item>
+    </Enumerate>
+
+Remember, these pages are supposed to be reference material, not a textbook. Keep blocks of text to a mimimum and use bullet points and numbering when useful. 
+</SubSection>
+<SubSection id="section-types" title="Section types"></SubSection>
+
+All titles should be done in sentence case. 
+
+<SubSubSection id="section" title="Page title" >
+
+    <CodeBox language="javascript" code=`
+    import Section from "../../components/Section.astro" 
+    ` />
+
+    <p>Tag type: Regular</p>
+
+    Options:
+    <ul>
+    <li>title: Displays title of the page.</li>
+    <li>id: Gives an id to the top of the page so it can be linked to in the navigation tree or other pages.</li>
+    </ul>
+    
+    Example:
+    <CodeBox language="html" code=`
+    <Section title="Title" id="example-page">
+        <p>TEXT</p>
+    </Section>
+    ` />
+
+</SubSubSection>
+
+<hr>
+
+<Section title="Example page title" id="example-page">
+<p>TEXT</p>
+</Section>
+
+<hr>
+
+<SubSubSection id="sub-section" title="Page sections" >
+
+    <CodeBox language="javascript" code=`
+    import SubSection from "../../components/SubSection.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+
+    Options:
+    <ul>
+    <li>title: Displays title of the section.</li>
+    <li>id: Gives an id to the section so it can be linked to in the navigation tree or other pages.</li>
+    </ul>
+    
+    Example:
+    <CodeBox language="html" code=`
+    <SubSection title="Section" id="example-section">
+        <p>TEXT</p>
+    </SubSection>
+    ` />
+
+</SubSubSection>
+
+<hr>
+
+<SubSection title="Example section" id="example-section">
+    <p>TEXT</p>
+</SubSection>
+
+<hr>
+
+<SubSubSection id="sub-sub-section" title="Page sub sections" >
+
+    <CodeBox language="javascript" code=`
+    import SubSection from "../../components/SubSubSection.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+
+    Options:
+    <ul>
+    <li>title: Displays title of the sub section.</li>
+    <li>id: Gives an id to the sub section so it can be linked to in the navigation tree or other pages.</li>
+    </ul>
+    
+    Example:
+    <CodeBox language="html" code=`
+    <SubSubSection title="SubSection" id="example-sub-section">
+        <p>TEXT</p>
+    </SubSubSection>
+    ` />
+
+</SubSubSection>
+
+<hr>
+
+<SubSubSection title="Example subsection" id="example-sub-section">
+    <p>TEXT</p>
+</SubSubSection>
+
+<hr>
+
+<SubSubSection id="sub-sub-sub-section" title="Page sub sub sections" >
+
+    <CodeBox language="javascript" code=`
+    import SubSection from "../../components/SubSubSubSection.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+
+    Options:
+    <ul>
+    <li>title: Displays title of the sub sub section.</li>
+    <li>id: Gives an id to the sub sub section so it can be linked to in the navigation tree or other pages.</li>
+    </ul>
+    
+    Example:
+    <CodeBox language="html" code=`
+    <SubSubSubSection title="SubSubSection" id="example-sub-sub-section">
+        <p>TEXT</p>
+    </SubSubSubSection>
+    ` />
+
+</SubSubSection>
+
+<hr>
+
+<SubSubSubSection title="Example subsubsection" id="example-sub-sub-section">
+    <p>TEXT</p>
+</SubSubSubSection>
+
+<hr>
+    
+<SubSection title="Paragraph and font options" id="paragraph-font">
+    <p>TEXT</p>
+</SubSection>
+    
+      
+<SubSubSection title="New paragraph" id="new-paragraph">
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+    <p> TEXT </p>
+    ` />
+    <p>TEXT</p>
+
+</SubSubSection>
+
+<SubSubSection title="Lists" id="lists">
+    <p>Use when 2 or more things need to be listed.</p>
+    
+    <CodeBox language="javascript" code=`
+    import Itemize from "../../components/Itemize.astro"
+    import Item from "../../components/Item.astro"
+    ` />
+    
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <Itemize>
+        <Item>TEXT</Item>
+        <Item>TEXT</Item>
+    </Itemize>
+
+    ` />
+    <Itemize>
+        <Item>TEXT</Item>
+        <Item>TEXT</Item>
+    </Itemize>
+
+</SubSubSection>     
+
+
+<SubSubSection title="Numbered lists" id="numbered-lists">
+    
+    <p>Use when 2 or more things are in a process or order.</p>
+
+    <CodeBox language="javascript" code=`
+    import Enumerate from "../../components/Enumerate.astro"
+    import Item from "../../components/Item.astro"
+    ` />
+    
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <Enumerate>
+        <Item>TEXT</Item>
+        <Item>TEXT</Item>
+    </Enumerate>
+
+    ` />
+    <Enumerate>
+        <Item>TEXT</Item>
+        <Item>TEXT</Item>
+    </Enumerate>
+
+</SubSubSection>     
+
+<SubSubSection title="Multicolumn" id="multi-column">
+    <CodeBox language="javascript" code=`
+    import Row from "../../components/Row.astro"
+    import Col from "../../components/Col.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>values: list of breakpoints</li>
+    </ul>
+
+    Table of breakpoints:
+
+    <DisplayTable id="breakpoints">
+        <thead>
+            <th></th>
+            <th>xs</th>
+            <th>sm</th>
+            <th>md</th>
+            <th>lg</th>
+            <th>xl</th>
+            <th>xxl</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    Size of screen
+                </th>
+                <td>
+                    &lt;576px
+                </td>
+                <td>
+                    &ge;576px
+                </td>
+                <td>
+                    &ge;768px
+                </td>
+                <td>
+                    &ge;992px
+                </td>
+                <td>
+                    &ge;1200px
+                </td>
+                <td>
+                    &ge;1400px
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Prefix
+                </th>
+                <td>
+                    None
+                </td>
+                <td>
+                    sm-
+                </td>
+                <td>
+                    md-
+                </td>
+                <td>
+                    lg-
+                </td>
+                <td>
+                    xl-
+                </td>
+                <td>
+                    xxl-
+                </td>
+            </tr>
+        </tbody>
+    </DisplayTable>
+
+
+    <p>A really powerful tool to create a responsive grid. These elements follow the same naming convention as the `Bootstrap` package. More details <a href="https://getbootstrap.com/docs/5.3/layout/grid/">HERE</a>. These elements treat the full width of the page as 12 units wide, and each `Col` can be defined to take however many units are necessary. Different values can be set for depending on the size of the screen. For example:</p>
+
+
+    Example:
+    <CodeBox language="html" code=`
+   <Row>
+      <Col values="12 lg-6">
+        <p>
+            Row1Col1
+        </p>
+      </Col>
+      <Col values="12 lg-6">
+        <p>
+          Row1Col2
+        </p>
+      </Col>
+    </Row>
+    ` id="colmd"/>
+
+    <p>This means that by default, each column will be 12 units wide (full-screen), and if the screen is bigger than the `lg` value (in this case &gt;992px), then it will only be 6 units wide (half-screen). Try reducing the size of your browser window, and notice how past a certain point, both elements below stack on top of each other.</p>
+
+    <Row>
+        <Col values="12 lg-6">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col1
+                </p>
+            </div>
+          
+        </Col>
+        <Col values="12 lg-6">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col2
+                </p>
+            </div>
+        </Col>
+  </Row>
+
+  <p>This can be extended to many more `Col` elements. For example, </p>
+
+  <CodeBox language="html" code=`
+   <Row>
+      <Col values="12 sm-6 md-4 lg-3">
+        <p>
+            Row1Col1
+        </p>
+      </Col>
+      <Col values="12 sm-6 md-4 lg-3">
+        <p>
+          Row1Col2
+        </p>
+      </Col>
+      <Col values="12 sm-6 md-4 lg-3">
+        <p>
+            Row1Col3
+        </p>
+      </Col>
+      <Col values="12 sm-6 md-4 lg-3">
+        <p>
+            Row1Col4
+        </p>
+      </Col>
+    </Row>
+    ` id="colmd2" closed_by_default="True" closed_height="100"/>
+
+    <p>
+        The above code means that when the screen is bigger than `lg` each element will occupy 1/4th of the screen. When between `lg` and `md`, it will occupy 1/3rd. When between `md` and `sm`, it will occupy 1/2, and below that will take up the entire screen. Resize your browser to see this behavior.
+    </p>
+
+    <Row>
+        <Col values="12 sm-6 md-4 lg-3">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col1
+                </p>
+            </div>
+        </Col>
+        <Col values="12 sm-6 md-4 lg-3">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col2
+                </p>
+            </div>
+        </Col>
+        <Col values="12 sm-6 md-4 lg-3">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col3
+                </p>
+            </div>
+        </Col>
+        <Col values="12 sm-6 md-4 lg-3">
+            <div class="border border-primary p-2 mb-2">
+                <p class="text-center">
+                    Row1Col4
+                </p>
+            </div>
+        </Col>
+      </Row>
+  
+</SubSubSection>
+
+<SubSubSection title="Italics" id="italics">
+
+    Typically used in figure and table captions.
+    
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <em>TEXT</em>
+
+    ` />
+    <em>TEXT</em>
+
+</SubSubSection> 
+
+<SubSubSection title="Bold" id="bold">
+    Generally used to emphasize key words in sentances. 
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <strong>TEXT</strong>
+
+    ` />
+    <strong>TEXT</strong>
+
+</SubSubSection> 
+
+<SubSubSection title="Underline" id="underline">
+
+    Typically only used for links, which are automatically formatted.
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <u>TEXT</u>
+
+    ` />
+    <u>TEXT</u>
+
+</SubSubSection> 
+
+<SubSubSection title="Other" id="font-customizations">
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>style: many things can be added here such as color (shown below) and centering text ("text-align: center"). To include multiple style changes, separate them by a semicolon (;). </li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <span style="color: green;">TEXT</span> 
+
+    ` />
+    <span style="color: green;" >TEXT</span> 
+
+
+
+</SubSubSection> 
+
+<SubSection title="Navigation tree" id="nav-tree">
+
+    <p>Tag type: Regular</p>
+    
+    How to use:
+    <Enumerate>
+        <Item>Insert template code at the top of the page after the 'Layout' component and before the 'Section' component. </Item>
+        <Item>Edit the template code to match the structure of the page.</Item>
+        <Itemize>
+            <Item>If a section has a subsection (or subsection has a subsubsection), add the subsection lines before closing the section line (after closing the 'a' component and before closing the 'li' component).</Item>
+            <Item>Closing the 'ul' component signifies that group of section type. </Item>
+        </Itemize>
+        <Item>Change the id in the 'href=#' to match the 'id=' of the (sub)section.</Item>
+        <Item>Change the (sub)secton title in the 'a' component to match the 'title=' of the (sub)section.</Item>
+        <Item>Check all links work.</Item>
+    </Enumerate>
+
+    Example:
+    <CodeBox language="html" code=`
+   <div slot="navtree">
+    <ul class='list-group list-group-flush py-0'> 
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#id'>PgSectionTitle</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#id'> PgSectionTitle </a>
+            <ul class='list-group list-group-flush py-0'> 
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#id'> PgSubSectionTitle </a></li> 
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#id'> PgSubSectionTitle </a>
+  	<ul class='list-group list-group-flush py-0'> 
+               	 <li class='list-group-item py-0'><a class='text-decoration-none subsubsubsection' href='#id'> PgSubSubSectionTitle </a></li> 
+                <li class='list-group-item py-0'><a class='text-decoration-none subsubsubsection' href='#id'> PgSubSubSectionTitle </a></li>  
+    </ul>
+    </li>  
+                </ul>
+            </li>  
+        </ul>
+    </div>
+    ` closed_by_default="True" id="navtree" closed_height="60"/>
+
+    The <a href="/sol/material_properties/">material properties page</a> in solid mechanics is a good example of multiple subsections being used. 
+</SubSection>
+
+
+<SubSection title="Inserting Links" id="links">
+
+</SubSection>
+ 
+<SubSubSection title="Within Page" id="same-page">
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>href: insert the id of the section you want to link to after the '#'.</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <a href="#id ">TEXT</a>
+    ` />
+
+    <a href="#nav-bar ">TEXT</a>
+
+    <p><em>*For demonstration purposes, this links to the navigation bar section.</em></p>
+
+</SubSubSection> 
+
+<SubSubSection title="Internal page" id="int-page">
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>href: Change to the course code and page (.astro name) you want to link to. If you want to link to a specific section of the page, add '#id' with the corresponding id after the page name. </li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <a href="/xxx/CoursePage">TEXT</a> 
+    ` />
+
+    <a href="/dyn/vectors">TEXT</a> 
+
+    <p><em>*For demonstration purposes, this links to vectors page in dynamics.</em></p>
+
+</SubSubSection> 
+
+<SubSubSection title="External page" id="ext-page">
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>href: Change to the full link starting with the http:// of the page you wish to direct to. </li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <a target="_blank" rel="noopener noreferrer" href="LINK">TEXT</a> 
+    ` />
+
+    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Aprille_Ericsson">TEXT</a>
+
+    <p><em>*For demonstration purposes, this links to a wikipedia page.</em></p>
+
+</SubSubSection> 
+
+<SubSubSection title="External video" id="ext-video">
+
+    <p> For safety purposes, please only embed YouTube videos. <p>
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>src: Change to the full link starting with the http:// of the page you wish to direct to and change the 'watch?v=' section of the link to 'embed/'. </li>
+    <li>class: the number here is the % width of the page that the video takes up.</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+     <p class="m-0"><u>TEXT</u></p>
+        <iframe src="LINK" class="w-100" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    ` />
+
+    <p class="m-0">TEXT</p>
+        <iframe src="https://www.youtube.com/embed/jRn5waE0qfk" class="w-50" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+    <p><em>*For demonstration purposes, this links to a YouTube video.</em></p>
+
+</SubSubSection>
+
+<SubSection title="Callout cards" id="callout-cards">
+
+    <p>
+    There are 4 main callout card templates which are all shown here. 
+    </p>
+
+    <CodeBox language="javascript" code=`
+     import CalloutCard from "../../components/CalloutCard.astro"
+    import CalloutContainer from "../../components/CalloutContainer.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>slot: should not change. </li>
+    <li>title: title of the card when displayed. f left blank, defaults to "Did you know?".</li>
+    </ul>
+
+    Examples:
+</SubSection>
+
+<SubSubSection title="Review" id="review">
+
+    <p>This card is used to connect back to material prior in the course or potential courses they may have already taken.</p>
+    <em>Note:</em> this information should not be needed to understand the material for the course, this is so students can see how courses connect to each other. Pages should be self-contained and not require links to other material.
+
+    <CalloutContainerContainer>
+        <CodeBox language="html" code=`
+        <CalloutContainer slot="cards">
+            <CalloutCard title="Review?">
+                <p>
+                   Need a review of <strong> SubSectionTitle </strong>?
+                </p>
+                <p>
+                    This content has also been in <a href="/XXX/CoursePage">CourseName</a> 
+                </p>
+                <p>
+                    CONTENT
+                </p>
+            </CalloutCard>
+        </CalloutContainer>
+        ` closed_by_default="True" id="review" closed_height="60"/>
+        
+        <CalloutContainer slot="cards">
+            <CalloutCard title="Review?">
+                <p>
+                   Need a review of <strong> SubSectionTitle </strong>?
+                </p>
+                <p>
+                    This content has also been in <a href="/XXX/CoursePage">CourseName</a> 
+                </p>
+                <p>
+                    CONTENT
+                </p>
+            </CalloutCard>
+        </CalloutContainer>
+    </CalloutContainerContainer>
+    
+
+</SubSubSection>
+
+
+<SubSubSection title="Supplemental material" id="supplemental">
+    <p>This card is used to include supplemental material (ie; videos, webpages, open-source textbooks, etc.).</p>
+    <CalloutContainerContainer>
+        <CodeBox language="html" code=`
+        <CalloutContainer slot="cards">
+            <CalloutCard title="Extra!">
+                <p class="m-0"><u>Supplemental video:</u></p>
+                    CONTENT
+            </CalloutCard>
+        </CalloutContainer>
+        ` closed_by_default="True" id="video" closed_height="60"/>
+
+        <CalloutContainer slot="cards">
+            <CalloutCard title="Extra!">
+                <p class="m-0"><u>Supplemental MATERIAL:</u></p>
+                    CONTENT
+            </CalloutCard>
+        </CalloutContainer>
+    </CalloutContainerContainer>
+</SubSubSection>
+
+<SubSubSection title="Extra info" id="extra">
+    <p>This card is used to connect to future content in the course or other courses students may take in the future.</p>
+    <CalloutContainerContainer>
+    <CodeBox language="html" code=`
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Heads  up!">
+            <p>
+               <strong> SubSectionTitle </strong> builds on this content in COURSE.
+              </p>
+              <p>
+                 CONTENT
+              </p>
+        </CalloutCard>
+    </CalloutContainer>
+    ` closed_by_default="True" id="headsup" closed_height="60"/>
+
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Heads  up!">
+            <p>
+               <strong> SubSectionTitle </strong> builds on this content in COURSE.
+            </p>
+            <p>
+                CONTENT
+            </p>
+        </CalloutCard>
+    </CalloutContainer>
+</CalloutContainerContainer>
+</SubSubSection>
+
+<SubSubSection title="Applications" id="applications">
+    <p>This card is used to highlight a real-world application of the course material.</p>
+    <CalloutContainerContainer>
+    <CodeBox language="html" code=`
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Application Alert!">
+            <p>
+               <a href="/XXX/ApplicationPage">Application</a>  uses <strong> SubSectionTitle </strong> by SHORT DESCRIPTION.
+              </p>
+              <p>
+                 CONTENT
+              </p>
+        </CalloutCard>
+    </CalloutContainer>
+    ` closed_by_default="True" id="applicationalert" closed_height="60"/>
+
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Application  Alert!">
+            <p>
+                <a href="/XXX/ApplicationPage">Application</a>  uses <strong> SubSectionTitle </strong> by SHORT DESCRIPTION.
+            </p>
+            <p>
+                CONTENT
+            </p>
+        </CalloutCard>
+    </CalloutContainer>
+</CalloutContainerContainer>
+</SubSubSection>
+
+<SubSection title="Images" id="images"></SubSection>
+
+<SubSubSection title="Images" id="image-image">
+    
+    
+    <CodeBox language="javascript" code=`
+    import Image from "../../components/Image.astro"
+    ` />
+
+    <p>Tag type: Self-closing (no caption) or regular (caption)</p>
+    
+    Options:
+    <ul>
+    <li>src: URL to the image.</li>
+    <li>width: A value between 1 and 7. A value of 7 means it will take up the full available width, and otherwise it will take up <InlineEquation equation="n/7\\cdot100\\%" />.</li>
+    <li>id: Gives an id to the image so it can be linked to in within the current page or from other pages. Optional.</li>
+    <li>alt: The text to display in place of the image if it fails to load. Optional but recommended for accessibility reasons.</li>
+    <li>class_: Give the image extra classes for styling. Optional.</li>
+    </ul>
+
+    <p class="m-0">Example:</p>
+    <Row>
+        <Col values="12 md-6">
+            
+                <CodeBox language="html" code=`
+                <Image src="/COURSE/FigFolder/FIGURE.png" width="7"> CAPTION</Image>
+                ` />
+            
+        </Col>
+        <Col values="12 md-6">
+            <CodeBox language="html" code=`
+            <Image src="/COURSE/FigFolder/FIGURE.png" width="7"/>
+            ` />
+        </Col>
+    </Row>
+
+    <Row>
+        <Col values="12 md-6">
+            <Image src="/sol/bending/Geometry.png" width="4"> CAPTION</Image>
+        </Col>
+        <Col values="12 md-6">
+            <Image src="/sol/bending/Geometry.png" width="4"/>
+        </Col>
+    </Row>
+
+</SubSubSection>
+
+<SubSubSection title="Slideshow" id="slideshow">
+    <CodeBox language="javascript" code=`
+    import Slideshow from "../../components/Slideshow.astro"
+    ` />
+
+    <p>Tag type: regular only</p>
+
+    Options:
+    <ul>
+    <li>id: Gives an id to the image so it can be linked to in within the current page or from other pages. Required.</li>
+    </ul>
+
+    <p class="m-0">Example:</p>
+
+    <CodeBox language="javascript" code=`
+    <Slideshow id="test">
+        <Image src="/about/documentation/alma.jpg" id="1" width="5"></Image>
+        <Image src="/sol/bending/Geometry.png" id="2" width="5"></Image>
+    </Slideshow>
+     ` />
+
+     <p>Result:</p>
+
+     <Slideshow id="test">
+        <Image src="/about/documentation/alma.jpg" id="1" width="5"></Image>
+        <Image src="/sol/bending/Geometry.png" id="2" width=5></Image>
+    </Slideshow>
+</SubSubSection>
+
+<!-- 
+<SubSection title="Animations" id="animations">
+</SubSection>
+-->
+
+    
+<SubSection title="Graphs" id="graphs">
+    <CodeBox language="javascript" code=`
+    import Plotly from "../../components/Plotly.astro"
+    ` />
+
+    Options:
+    <ul>
+    <li>file_path: Links to the file containing the graph data. <strong>Required.</strong></li>
+    <li>id: Gives an id to the graph to ensure responsiveness, and proper loading of the graph. <strong>Required.</strong></li>
+    </ul>
+
+    <p>physicsref has support for integrating <strong>Plotly</strong> graphs. This very powerful library allows you to create interactive graphs in Python, and export them to a `.json` file, which can be loaded by physicsref. Plotly can be used to generate many types of graphs: line-charts, scatter plots, bar charts, histograms, etc. If you have never used this library before, we recommend starting with <a href="https://plotly.com/python/line-charts/">this page</a>, which will show you how to make a basic line-chart. ChatGPT has also been a surprisingly reliable source of information on the many options one can add to a graph to make it look and feel exactly as desired.</p>
+
+    <Warning title="Do not use fixed widths when making your graphs" id="plotly-warning">
+        <p>Plotly has to option to define a set height and width when making your graphs, as an example:</p>
+        <CodeBox language="python" code=`
+   fig.update_layout(
+        # Options ...
+        height=500, 
+        width=1200,
+        # ... more options ...
+    )
+    ` />
+    <p>Make sure that the `width` option is <strong>NOT</strong> included. physicsref takes care of deciding the width based on the type of device used (laptop, mobile, etc.), and width of the screen. A fixed width interferes with that process.</p>
+    </Warning>
+
+    <p>Once you have exported your graph data, place it in the same folder that you would an image. For example, if you wanted to add your graph to your first page, you would get:</p>
+
+    <CodeBox language="python" code=`
+        public
+        |--> <course_abbreviation>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--> <page_1>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--> <graph_name>.json
+        src
+        |--> components
+        |--> layouts
+        |--> pages
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--> <course_abbreviation>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--> <page_1>.astro
+    ` />
+
+    <p>And in this case, you would load your graph using in the following way:</p>
+
+    <CodeBox language="html" code=`
+        <Plotly id="graph" file_path="<course_abbreviation>/<page_1>/<graph_name>.json"/>
+    ` />
+    <p>Result:</p>
+    <Plotly id="failure-criteria-container" file_path="sol/plotly_graphs/FailureCriteria.json"/>
+</SubSection>
+
+<SubSection id="equations" title="Equations">
+    <p>
+        <InlineEquation equation="\\LaTeX"/> can be used inside your pages. Just like in Latex, we differentiate between inline-math and display-math.
+        One difference betweem <InlineEquation equation="\\LaTeX"/> and these pages is when writing math in <InlineEquation equation="\\LaTeX"/>, you use one backslash <InlineEquation equation="(\\backslash)"/>, but in the reference pages you need to use two <InlineEquation equation="(\\backslash \\backslash)"/>.
+    </p>
+</SubSection>
+
+<SubSubSection id="inline-eq" title="Inline">
+    This will create an element that goes along with the text it's included with, and is useful for important equations that need to be part of a paragraph.
+
+    <CodeBox language="javascript" code=`
+   import InlineEquation from "../../components/InlineEquation.astro" 
+    ` />
+
+    <p>Type: Self-closing</p>
+    
+    Options:
+    <ul>
+    <li>equation: Insert your LateX equation here.</li>
+    </ul>
+    
+    Example:
+    <CodeBox language="html" code=`
+        TEXT <InlineEquation equation="eq" /> TEXT.
+        `/> 
+    
+    TEXT <InlineEquation equation="eq" /> TEXT.
+</SubSubSection>
+
+<SubSubSection id="display-eq" title="Display ">
+    
+    This will create an element that takes the entire width of the element it's inside of, and is useful for important equations that deserve to be highlighted.
+
+    <CodeBox language="javascript" code=`
+   import DisplayEquation from "../../components/DisplayEquation.astro" 
+    ` />
+
+    <p>Type: Self-closing (no derivation) or regular (derivation)</p>
+
+    Options:
+    <ul>
+    <li>equation: Insert your LateX equation here.</li>
+    <li>title: Displays a title above the equation.</li>
+    <li>id: Gives an id to the equation so it can be linked to in within the current page or from other pages. <strong>Required when derivation is set to "True"</strong>. Also allows the proper function of the derivation menu.</li>
+    <li>background: Adds the characteristic yellow background and black border around the equation when set to "True". This should always be set to True.</li>
+    <li>derivation: Adds a "Derivation +" button to expand the derivation menu when set to "True".</li>
+    </ul>
+
+    Examples:
+</SubSubSection>
+
+<SubSubSubSection title="Single" id="single-eq">
+    
+    <CodeBox language="html" code=`
+        <DisplayEquation equation="eq" title="TITLE" background="True" />
+        `/>
+
+        <DisplayEquation equation="eq" title="TITLE" background="True" />
+
+</SubSubSubSection>
+
+<SubSubSubSection title="Multiple" id="multiple-eq">
+    
+    <CodeBox language="html" code=`
+        <DisplayEquation equation="\\begin{align} eq1 \\\\ eq2 \\\\ eq3 \\end{align}" title="TITLE" background="True" />
+        `/>
+
+        <DisplayEquation equation="\\begin{align} eq1 \\\\ eq2 \\\\ eq3 \\end{align}" title="TITLE" background="True" />
+
+</SubSubSubSection>
+
+<SubSubSubSection title="Derived" id="derived-eq">
+    
+    <CodeBox language="html" code=`
+        <DisplayEquation equation="eq" title="TITLE" background="True" derivation="True" id="ID">
+            <DisplayEquation equation="eq" />
+            <DisplayEquation equation="eq" />
+        </DisplayEquation>
+        `/>
+
+        <DisplayEquation equation="eq" title="TITLE" background="True" derivation="True" id="ID">
+            <DisplayEquation equation="eq" />
+            <DisplayEquation equation="eq" />
+        </DisplayEquation>
+            
+</SubSubSubSection>
+
+<SubSubSection id="custom-eq" title="Custom">
+    
+    Same as DisplayEquation, but provides a lot more freedom with how everything looks. Made for when equation boxes don't follow the format above.
+
+    <CodeBox language="javascript" code=`
+   import DisplayEquationCustom from "../../components/DisplayEquationCustom.astro" 
+    ` />
+
+    <p>Type: Regular only</p>
+
+    Options:
+    <ul>
+    <li>title: Displays a title above the equation.</li>
+    <li>id: Gives an id to the equation so it can be linked to in within the current page or from other pages. <strong>Required</strong>. Also allows the proper function of the derivation menu.</li>
+    <li>background: Adds the characteristic yellow background and black border around the equation when set to "True". This should always be set to True.</li>
+    <li>derivation: Adds a "Derivation +" button to expand the derivation menu when set to "True". <em>Note:</em> the use of the  `&ltdiv slot="derivation"&gt&lt/div&gt` in the code.</li>    
+    </ul>
+
+    <CodeBox language="html" code=`
+        <DisplayEquationCustom title="TITLE" id="id" background="True" derivation="True">
+            <div class="w-100 d-flex flex-row">
+                <div class="w-50">
+                    <InlineCanvas id="rcm-er-c" width="300" height="300" show_border="False" />
+                </div>
+                <div class="w-50">
+                    <DisplayEquation equation="eq" />
+                </div>
+            </div>
+            <div slot="derivation">
+                <DisplayEquation equation="eq" />
+                <DisplayEquation equation="eq" />
+            </div>
+        </DisplayEquationCustom>
+    ` closed_by_default="True" id="decustom" closed_height="60"/>
+
+    <DisplayEquationCustom title="TITLE" id="id" background="True" derivation="True">
+        <div class="w-100 d-flex flex-row">
+            <div class="w-50">
+                <InlineCanvas id="rcm-er-c" width="300" height="300" show_border="False" />
+            </div>
+            <div class="w-50">
+                <DisplayEquation equation="eq" />
+            </div>
+        </div>
+        <div slot="derivation">
+            <DisplayEquation equation="eq" />
+            <DisplayEquation equation="eq" />
+        </div>
+    </DisplayEquationCustom>
+
+</SubSubSection>
+
+<SubSection id="tables" title="Tables">
+    Used to create tables. This element ensures mobile responsiveness, default HTML tables might break the look of the page if they contain a lot of content, or if they feel like it.
+    Components such as figures and equations can be used inside of tables.
+    
+    <CodeBox language="javascript" code=`
+   import DisplayTable from "../../components/DisplayTable.astro" 
+    ` />
+    
+    <p></p><p>Type: Regular only</p>
+
+    Options:
+    <ul>
+        <li>id: Gives an id to the table to ensure proper responsiveness. <strong>Required.</strong></li>
+        <li>class_: Give the table extra classes for styling. Optional.</li>
+        <li>class (in 'th', 'tr', or 'td'): customizations for the formatting. Optional. </li>
+        <li>style (in 'th', 'tr', or 'td'): customizations for the formatting. Optional. </li>
+    </ul>
+
+    <p>
+        <em>Note:</em> The header content should be wrapped within the `thead` element, and the body content should be wrapped within a `tbody` element. There should only be one of each in your table. This allows for proper styling on our end, and is the HTML standard browsers expect, therefore deviating from this might break the look of your tables.
+    </p>
+
+
+    Example: 
+
+    <CodeBox language="html" code=`
+    <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Title1</th>
+            <th class="table-shaded">Title2</th>
+            <th class="table-shaded">Title3</th>
+            <th class="table-shaded">Title4</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>row1col1</td>
+            <td>row1col2</td>
+            <td>row1col3</td>
+            <td>row1col4</td>
+        </tr>
+        <tr>
+            <td>row2col1</td>
+            <td>row2col2</td>
+            <td>row2col3</td>
+            <td>row2col4</td>
+        </tr>
+        </tbody>
+    </DisplayTable>
+    ` closed_by_default="True" id="table" closed_height="60"/>
+
+    <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Title1</th>
+            <th class="table-shaded">Title2</th>
+            <th class="table-shaded">Title3</th>
+            <th class="table-shaded">Title4</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>row1col1</td>
+            <td>row1col2</td>
+            <td>row1col3</td>
+            <td>row1col4</td>
+        </tr>
+        <tr>
+            <td>row2col1</td>
+            <td>row2col2</td>
+            <td>row2col3</td>
+            <td>row2col4</td>
+        </tr>
+        </tbody>
+    </DisplayTable>
+
+</SubSection>
+
+<SubSubSection title="Customizations" id="table-customizations">
+
+    We have added a few utilies to customize the look of your tables while maintaining a consistent look and feel in the pages.
+
+    <p>
+    The default settings will auto-adjust the column widths to fit the content placed in the cell. 
+    To specify a width for a given column, use 'style="width:##%" ' in appropriate the header component.
+    </p>
+
+    Example: 
+    <CodeBox language="html" code=`
+        <DisplayTable id="id" class_="mb-3">
+            <thead>
+            <tr>
+                <th class="table-shaded" noborder>Title1</th>
+                <th class="table-shaded" style="width:50%">Title2</th>
+                <th class="table-shaded">Title3</th>
+                <th class="table-shaded">Title4</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>row1col1</td>
+                <td>row1col2</td>
+                <td>row1col3</td>
+                <td>row1col4</td>
+            </tr>
+            <tr>
+                <td>row2col1</td>
+                <td>row2col2</td>
+                <td>row2col3</td>
+                <td>row2col4</td>
+            </tr>
+            </tbody>
+        </DisplayTable>
+    ` closed_by_default="True" id="tablecustom" closed_height="60"/>
+
+    <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Title1</th>
+            <th class="table-shaded" style="width:50%">Title2</th>
+            <th class="table-shaded">Title3</th>
+            <th class="table-shaded">Title4</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>row1col1</td>
+            <td>row1col2</td>
+            <td>row1col3</td>
+            <td>row1col4</td>
+        </tr>
+        <tr>
+            <td>row2col1</td>
+            <td>row2col2</td>
+            <td>row2col3</td>
+            <td>row2col4</td>
+        </tr>
+        </tbody>
+    </DisplayTable>
+
+    The `table-shaded` class can be used to emphasize a particular row, column, or cell of the table. 
+
+    <p>Example:</p>
+
+    <CodeBox code=`
+        <DisplayTable id="id" class_="mb-3">
+            <thead>
+            <tr>
+            <th noborder>Title1</th>
+            <thclass="table-shaded">Title2</th>
+            <th>Title3</th>
+            <th>Title4</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>row1col1</td>
+            <td class="table-shaded">row1col2</td>
+            <td>row1col3</td>
+            <td>row1col4</td>
+            </tr>
+            <tr>
+            <td>row2col1</td>
+            <td class="table-shaded">row2col2</td>
+            <td>row2col3</td>
+            <td>row2col4</td>
+            </tr>
+            </tbody>
+        </DisplayTable>
+    ` closed_by_default="True" id="tableshaded" closed_height="60"/>
+
+    
+    <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+        <th noborder>Title1</th>
+        <th class="table-shaded">Title2</th>
+        <th>Title3</th>
+        <th>Title4</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>row1col1</td>
+        <td class="table-shaded">row1col2</td>
+        <td>row1col3</td>
+        <td>row1col4</td>
+        </tr>
+        <tr>
+        <td>row2col1</td>
+        <td class="table-shaded">row2col2</td>
+        <td>row2col3</td>
+        <td>row2col4</td>
+        </tr>
+        </tbody>
+    </DisplayTable>
+    
+</SubSubSection>
+
+<SubSection title="Examples" id="examples">
+
+    <CodeBox language="javascript" code=`
+        import Example from "../../components/Example.astro"
+    ` />
+
+    <p>Tag type: Regular</p>
+    
+    Options:
+    <ul>
+    <li>title: Displays a title before the example is expanded.</li>
+    <li>id: Gives an id to the equation so it can be linked to in within the current page or from other pages. Required when solution is set to "True". Also allows the proper function of the derivation menu.</li>
+    <li>solution: Adds a "Solution +" button to expand the solution menu when set to "True".</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+    <Example id="ID" title="TITLE" solution="True">
+        <div class="d-flex flex-row">
+            <Row>
+            <Col values="12 md-4">
+                <p>
+                QUESTION
+                </p>
+            </Col>
+            <Col values="12 md-8">
+                <Image src="IMAGE " width="7"></Image>
+            </Col>
+            </Row>
+        </div>
+        <div slot="solution">
+            <p>
+                CONTENT
+            </p>
+        </div>
+    </Example>
+    ` closed_by_default="True" id="exampleproblem" closed_height="60"/>
+
+    <Example id="ID" title="TITLE" solution="True">
+        <div class="d-flex flex-row">
+          <Row>
+            <Col values="12 md-4">
+              <p>
+                QUESTION
+                </p>
+            </Col>
+            <Col values="12 md-8">
+                <Image src="/sol/bending/Geometry.png " width="3"></Image>
+            </Col>
+          </Row>
+        </div>
+        <div slot="solution">
+            <p>
+               Solution
+            </p>
+        </div>
+      </Example>
+      
+    
+</SubSection> 
+
+<SubSection title="Notes" id="notes">
+
+
+    <p>Tag type: none</p>
+    
+    Options:
+    <ul>
+    <li>na</li>
+    </ul>
+
+    Example:
+    <CodeBox language="html" code=`
+   <em>Note: </em> TEXT.
+    ` />
+
+    <em>Note: </em> TEXT.
+
+</SubSection> 
+
+<SubSection title="Warnings" id="warnings">
+
+    <CodeBox language="javascript" code=`
+        import Warning from "../../components/Warning.astro"
+    ` />
+
+
+    <p>Tag type: Self-closing (does not expand) or regular (expands)</p>
+    
+    Options:
+    <ul>
+    <li>title: Displays a title before the warning is expanded.</li>
+    <li>id: Gives an id to the equation so it can be linked to in within the current page or from other pages. Required when rem,ove_button is not present or set to "False". Also allows the proper function of the derivation menu.</li>
+    <li>remove_button: Removes the + button if the warning does not require more details</li>
+    </ul>
+
+    Example:
+    <p>Expands.</p>
+    <CodeBox language="html" code=`
+    <Warning title="TITLE" id="id">
+        CONTENT
+    </Warning>
+
+    ` />
+
+    <Warning title="TITLE" id="ID">
+        CONTENT
+    </Warning>
+
+    <p>Does not expand.</p>
+
+    <CodeBox language="html" code=`
+    <Warning title="TITLE" id="ID_2" remove_button="True"/>
+    ` />
+
+    <Warning title="TITLE" id="ID_2" remove_button="true"/>
+        
+
+</SubSection> 
+
+<SubSection title="Code box" id="code-box">
+
+    Code boxes usually aren't needed. Any code box can be clicked on and the code will be copied into the users clipboard.
+    
+    <CodeBox language="javascript" code=`
+   import CodeBox from "../../components/CodeBox.astro"
+    ` />
+    
+    <p>Tag type: Self closing</p>
+    
+    Options:
+    <ul>
+    <li>language: The language of the code used in the box.</li>
+    <li>code: Insert the code here. </li>
+    <li>closed_by_default: Will close the box whenset to "True". Optional.</li>
+    <li>id: Gives an id to the equation so it can be linked to in within the current page or from other pages. Required when closed_by_default is set to "True". Also allows the proper function of the expanded menu.</li>
+    <li>closed_height: Sets the height of the box when closed.</li>
+    </ul>
+
+    Example:
+    <p>Open</p>
+    <CodeBox language="javascript" code={`<CodeBox language="html" code=\`\nCODE\n\` id="test1" />`}/>
+
+    <CodeBox language="html" code=`CODE` />
+
+    <p>Closed</p>
+    <CodeBox language="javascript" code={`<CodeBox language="javascript" code=\`\nfunction lorem(ipsum, dolor = 1) {\nconst sit = ipsum == null ? 0 : ipsum.sit;\ndolor = sit - amet(dolor);\nreturn sit ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor) : [];\n}\n\` closed_by_default="True" id="test2" closed_height="30" />`}/>
+
+    <CodeBox language="javascript" code=`function lorem(ipsum, dolor = 1) {\nconst sit = ipsum == null ? 0 : ipsum.sit;\ndolor = sit - amet(dolor);\nreturn sit ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor) : [];\n}` closed_by_default="True" id="codebox-example" closed_height="60" />
+
+</SubSection>
+
+</Layout>
+
+<script src="/about/docs.js" is:inline></script>

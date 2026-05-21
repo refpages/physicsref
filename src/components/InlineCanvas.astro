@@ -1,0 +1,45 @@
+---
+const {id, height, width, show_border="False"} = Astro.props;
+
+import Center from "./Center.astro";
+---
+
+<style>
+    .figureCaption{
+        margin-top: 1rem;
+    }
+
+    .canvas-border{
+        border: 1px solid black;
+    }
+</style>
+
+
+<Center>
+<div id={id+'_container'}>
+    <canvas id={id} height={height} width={0} class={show_border != "False" ? "canvas-border" : ""}></canvas>
+
+    <div class="w-100"> 
+            <slot />
+    </div>
+</div>
+</Center>
+
+<script is:inline define:vars={{id, width}}>
+    let body_width;
+    let canvas_width;
+
+    function set_width(id, width){
+        body_width = $('body').width();
+        canvas_width = Math.min(body_width - 24, width);
+
+        $('#'+id+'_container').width(canvas_width);
+        document.querySelector(`canvas#${id}`).width = canvas_width - 4;
+    }
+
+    set_width(id, width);
+
+    $( window ).on( "resize", function() {
+        set_width(id, width)
+    } );
+</script>
