@@ -1,0 +1,637 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Algebra-Based Electricity and Magnetism Formula Sheet">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><details><summary>Dynamics</summary>  <!--<a class='text-decoration-none subsection' href='#Dynamics'>Dynamics</a>-->
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#kinematics'>Motion</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#forces'>Forces</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#energy'>Energy</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#bigG'>Universal Gravitation</a></li> 
+					
+                </ul></details>
+            </li>
+			<li class='list-group-item py-0'><details><summary>Electrostatics</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#coulomb'>Electric Force</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Efield'>Electric Field</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#U'>Potential Energy</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#V'>Electric Potential</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#FEUV'>Connections</a></li> 
+					
+                </ul></details>
+            </li>
+			
+			<li class='list-group-item py-0'><details><summary>Circuits</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#R'>Resistors</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#C'>Capacitors</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Kircchoff'>Analysis Rules</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#RC'>RC Circuits</a></li>
+					
+                </ul></details>
+            </li>
+			
+			<li class='list-group-item py-0'><details><summary>Magnetism</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#FB'>Force on moving charges</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Amperes'>B-fields from currents</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Kircchoff'>Right hand rule(s)</a></li>
+					
+                </ul></details>
+            </li>
+			
+			<li class='list-group-item py-0'><details><summary>Electromagnetism</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Faraday'>Electromagnetic Induction</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Waves'>Electromagnetic Waves</a></li> 
+									
+                </ul></details>
+            </li>
+			
+			<li class='list-group-item py-0'><details><summary>Light</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#optics'>Reflection and Refraction</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Interference'>Interference and Diffraction</a></li> 
+									
+                </ul></details>
+            </li>
+			
+			<li class='list-group-item py-0'><details><summary>Reference</summary>  
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Constants'>Constants</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Units'>SI Prefixes</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Geometry'>Useful Geometry</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#symbols'>Symbols</a></li> 
+                </ul></details>
+            </li>
+			
+        </ul>
+    </div>
+
+
+
+
+<Section id="main-section" title="E&M Formula Sheet">
+        <p>
+            This page contains all formulas and information that will be provided to you on tests and quizzes in your Physics class.
+        </p>
+        
+</Section>
+	
+        
+		
+<SubSection id="dynamics" title="Dynamics: Motion, Forces, and Energy">
+<p>
+            Formulas from Physics 1 that will be useful this semester.
+        </p>
+
+</SubSection>
+		
+		
+<SubSubSection id="kinematics" title="Motion">
+<p>These equations describe the <b>one dimensional</b> motion of an object traveling with constant acceleration <InlineEquation equation="a" /> from initial position <InlineEquation equation="x_0" /> and having initial velocity <InlineEquation equation="v_0" />.</p>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Position }\ x \\text{ at time } t:}&& {x=x_0+v_0 t + \\frac{1}{2}at^2} \\\\&{\\text{Velocity }\ v \\text{ at time } t:}&& v=at \\\\&{\\text{Final velocity }\ v \\text{ after traveling} \\Delta x :}&& v^2={v_0}^2+2a\\Delta x \\end{aligned}" background="true" title="One-dimensional constant acceleration motion:"/>
+
+<DisplayEquation equation="a_c=\\frac{v^2}{r}" title="Centripetal acceleration: Acceleration perpendicular to an object's velocity will cause it to travel in a circle of radius r:" background="True" />
+
+<DisplayEquation equation="\\vec{p}=m\\vec{v}" title="An object's momentum is a vector that points in the same direction as its velocity:" background="True" />
+
+
+</SubSubSection>
+
+
+
+
+<SubSubSection id="forces" title="Forces"> 
+<CalloutContainer slot="cards">
+<CalloutCard title="Acceleration due to gravity (near the surface of Earth)">
+			We use "standard gravity" for calculations:<br>
+			g=9.81 m/s<sup>2</sup>
+            </CalloutCard>
+        </CalloutContainer>   
+<DisplayEquation equation="\\sum\\vec{F}=m\\vec{a}" title="The total (vector sum) force acting on an object will cause its (vector) acceleration:" background="True" />
+<DisplayEquation equation="\\begin{aligned}&{\\text{Forces along }\ x \\text{ cause acceleration along } x:}&& F_{1x}+F_{2x}+\\cdots=ma_x \\\\&{\\text{Forces along }\ y \\text{ cause acceleration along } y:}&& F_{1y}+F_{2y}+\\cdots=ma_y \\end{aligned}" background="true" title="Turning 2D vectors into 1D for solving"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Force of gravity (near Earth's surface)}}&& F_g=mg \\\\&{\\text{Spring force (stretched distance x from equilibrium)}}&& \\vec{F}_s=-k\\vec{x} \\end{aligned}" background="true" title="Macroscopic force models"/>
+<br>
+<DisplayEquation equation="\\begin{aligned}\\tau&=F_\\perp  r \\\\ &=F r_\\perp \\\\ &=Fr\\sin{\\theta} \\end{aligned}" background="true" title="A force applied perpendicular to a distance r from an object's rotation axis will create torque about that axis:"/>
+</SubSubSection>
+
+
+<SubSubSection id="energy" title="Energy"> 
+<DisplayEquation equation="\\begin{aligned}W_F&=F_\\parallel  d \\\\ &=F d_\\parallel \\\\ &=Fd\\cos{\\theta} \\end{aligned}" background="true" title="Each force F does work (transfers energy) when an object is displaced distance d parallel to that force:"/>
+<DisplayEquation equation="\\begin{aligned}P_F&=F_\\parallel  v \\\\ &=F v_\\parallel \\\\ &=Fv\\cos{\\theta} \\end{aligned}" background="true" title="Each force F pushing an object at velocity v parallel to the force has power (energy transfer rate):"/>
+<br><br>
+<DisplayEquation equation="K=\\frac{1}{2}mv^2" title="A moving object has kinetic energy:" background="True"/>
+<DisplayEquation equation="W_{total}=\\Delta K" title="Total work on an object changes that object's kinetic energy:" background="True"/>
+<br><br>
+<DisplayEquation equation="E=K+U" title="Total mechanical energy of an object combines kinetic and potential energy:" background="True"/>
+<DisplayEquation equation="\\begin{aligned}&{\\text{Work by a conservative force borrows from its Potential Energy:}}&& W_c=-\\Delta U \\\\&{\\text{Close to Earth, gravity stores energy in height:}}&& U_{g}=mgh \\\\&{\\text{Springs store energy in compression or expansion:}}&& U_s=\\frac{1}{2}kx^2 \\end{aligned}" background="true" title="Conservative forces can store energy as Potential Energy" />
+<DisplayEquation equation="E_i+W_{nc}=E_f" title="Nonconservative work changes the mechanical energy of an object:" background="True"/>
+</SubSubSection>
+
+
+
+<SubSubSection id="bigG" title="Universal Gravitation">
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Gravitational constant">
+			G=6.67×10<sup>-11</sup> N m<sup>2</sup>/kg<sup>2</sup>
+            </CalloutCard>
+        </CalloutContainer>
+		
+<p>Two objects having masses m₁ and m₂ will exert a gravitational force on each other.</p>
+<p>This force is always mutual and attractive (i.e., the masses pull toward each other).</p>
+
+<DisplayEquation equation="|\\vec{F}_{1\\text{ on }2}|=G\\frac{m_1 m_2}{{r}^2}" title="Magnitude of gravitational force exerted on mass 2 by mass 1 when separated by distance r:" background="True" />
+
+<DisplayEquation equation="U_G=-G\\frac{m_1 m_2}{{r}}" title="Gravitational potential energy stored between the two masses is:" background="True" />
+<Warning title="Negative potential energy" id="GPE">
+            The negative sign is not a mistake in the formula sheet and should not be left out of your calculations. As the two masses get closer to each other, gravitational potential energy must decrease. Using the negative sign is the only way to make this possible.
+        </Warning>
+</SubSubSection>
+
+
+<Section>
+<CalloutContainer slot="cards">
+            <CalloutCard title="Electrostatics constants">
+			<p>Electron charge:<br>
+                e=1.60×10<sup>-19</sup> C</p>
+			<p>Coulomb constant:<br>
+                k=1/4&#x3C0;ε<sub>0</sub>=8.99×10<sup>9</sup> Nm<sup>2</sup>/C<sup>2</sup></p>
+				<p>Permittivity of free space:<br>
+				ε<sub>0</sub>=8.85×10<sup>-12</sup> C<sup>2</sup>/Nm<sup>2</sup></p>
+            </CalloutCard>
+        </CalloutContainer>
+		
+<SubSection id="electrostatics" title="Electrostatics: Electric force, fields, and potential">
+<p></p>
+</SubSection>
+ 
+		
+<SubSubSection id="coulomb" title="Electric Force">
+<p>Electric charges exert mutual electric force on each other: <InlineEquation equation="\\vec{F}_{1\\text{ on }2}=-\\vec{F}_{2\\text{ on }1}" />.</p>
+<p>Determining the direction of <InlineEquation equation="\\vec{F}_{1\\text{ on }2}"/> or <InlineEquation equation="\\vec{F}_{2 \\text{ on }1}"/> using a mathematical expression is beyond the scope of this course. Instead, you must use visual geometry to determine the force direction.</p>
+
+<DisplayEquation equation="|\\vec{F}_{1\\text{ on }2}|=k\\frac{|q_1|\\cdot|q_2|}{{r}^2}" title="Magnitude of electric force exerted on Charge 2 by Charge 1 when separated by distance r:" background="True" />
+
+</SubSubSection>
+
+
+
+
+<SubSubSection id="Efield" title="Electric Field (E-field)">
+<p>Electric field is a property of space that is created by the placement of electric charges. We focus separately on (1) The forces electric fields exert on test charges and (2) The electric fields created by electric charges</p>
+<p>When a test charge or "charge of interest" is placed in the field, a force is exerted on the test charge.</p>
+<DisplayEquation equation="\\vec{F}=q_t\\vec{E}" title="Any electric field E will exert a force on a test charge qₜ placed in that field:" background="True" />
+
+<p>The electric field is a vector. However, we can use equations to determine the magnitude of the field created by charges.</p>
+<DisplayEquation equation="|\\vec{E}|=k\\frac{|q|}{r^2}" title="A point charge q creates an electric field E at a distance r from the charge:" background="True" />
+<DisplayEquation equation="\\vec{E}_{total}=\\vec{E}_{q_1}+\\vec{E}_{q_2}+\\vec{E}_{q_3}+\\cdots" title="Electric fields from multiple charges add by superposition:" background="True" />
+</SubSubSection>
+
+
+
+<SubSubSection id="Gauss" title="">
+<p>For complicated (but symmetric) charge arrangements, we use a different approach:</p>
+
+		
+<DisplayEquation equation="\\begin{aligned}&{\\text{Electric flux definition:}} && \\Phi_E=E_\\parallel A_S \\\\ &{\\text{Enclosed charge creates electric flux:}} && \\Phi_E=\\frac{q_{enc}}{\\varepsilon_0} \\\\  \\end{aligned}" background="true" title="Electric field is related to charge enclosed by an imaginary 'Gaussian Surface.' The direction of the surface is normal (perpendicular) to the surface and points outward." >
+</DisplayEquation>
+            
+</SubSubSection>
+
+
+
+<SubSubSection id="U" title="Electric Potential Energy">    
+<p>The electric force is a conservative force.</p>
+<DisplayEquation equation="W_E=-\\Delta U_E" title="Work by the E-field borrows from potential energy:" background="True" />
+
+<DisplayEquation equation="U_{12}=k\\frac{q_1 q_2}{r}" title="For a group of point charges, each pair of charges stores electric potential energy:" background="True" />
+<Warning title="Negative potential energy" id="EPE">
+            Electric potential energy can be positive or negative. It is important to keep track of the sign of this scalar quantity.
+        </Warning>
+
+<p>Additional reference: <a  href='#energy'>Energy equations</a></p>
+</SubSubSection>
+
+<SubSubSection id="V" title="Electric Potential">    
+<p>Electric potential (V) is a scalar property of a point in space that is created by the placement of electric charges.</p>
+
+<DisplayEquation equation="\\Delta U=q_t \\Delta V" title="When a test charge qₜ is moved across electric potential, electric potential energy of the system changes:" background="True" />
+
+<DisplayEquation equation="V=k\\frac{q}{r}" title="A point charge q creates an electric potential V at a distance r from the charge:" background="True" />
+<DisplayEquation equation="V_{total}=V_{q_1}+V_{q_2}+V_{q_3}+\\cdots" title="Electric potentials from multiple charges add by superposition:" background="True" />
+
+<DisplayEquation equation="\\Delta V = E \\cdot \\Delta d_\\parallel" title="Electric potential difference across a uniform electric field:" background="True" />
+
+</SubSubSection>
+</Section>
+
+
+<Section>
+		
+<SubSection id="circuits" title="Circuits">
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Charge}}&& Q \\\\&{\\text{Current}}&& I=\\frac{\\Delta Q}{\\Delta t} \\\\&{\\text{Potential difference}}&& V \\\\&{\\text{Battery emf (in volts)}}&& \\mathcal{E} \\\\&{\\text{Resistance}}&& R  \\\\&{\\text{Capacitance}}&& C  \\end{aligned}" background="true" title="Symbols in circuit analysis" />
+<Warning title="Voltage differences in circuits" id="V">
+            For circuits only: The variable V (called "Voltage") is used to represent the electric potential difference across a <b>single</b> circuit element.
+        </Warning>
+</SubSection>
+
+<SubSubSection id="R" title="Resistors">    
+		
+<DisplayEquation equation="R=\\frac{\\rho L}{A}" title="The resistance of a resistor is determined by its geometry (A and L) and resistivity (𝜌):" background="True" />
+
+<DisplayEquation equation="V=IR" title="The potential difference across a resistor pushes current through the resistor:" background="True" />
+
+<DisplayEquation equation="\\begin{aligned}P&=IV \\\\ &=I^2 R \\\\ &=\\frac{V^2}{R} \\end{aligned}" background="true" title="Power dissipated by a resistor:"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{In series:}}&& R_{eq}=R_1+R_2+\\cdots \\\\&{\\text{In parallel:}}&& \\frac{1}{R_{eq}}=\\frac{1}{R_1}+\\frac{1}{R_2}+\\cdots  \\end{aligned}" background="true" title="Equivalent resistance..." />
+
+</SubSubSection>
+
+<SubSubSection id="C" title="Capacitors">    
+<CalloutContainer slot="cards">
+<CalloutCard title="Constants for capacitors">
+			<p>Permittivity of free space:<br>
+				ε<sub>0</sub>=8.85×10<sup>-12</sup> C<sup>2</sup>/Nm<sup>2</sup></p>
+				<p>Dielectric constant of vacuum<br>
+				𝜅<sub>0</sub>=1</p>
+            </CalloutCard>
+        </CalloutContainer>
+		
+<DisplayEquation equation="C=\\kappa \\frac{\\varepsilon_0 A}{d}" title="The capacitance of a parallel plate capacitor is determined by its geometry (A and d) and the dielectric constant of the material between the plates (𝜅):" background="True" />
+
+<DisplayEquation equation="|\\vec{E}|=\\frac{Q}{\\varepsilon_0 A}" title="Electric field between the capacitor plates (in vacuum):" background="True" />
+
+<DisplayEquation equation="V=CQ" title="The potential difference across a capacitor stores charge in that capacitor:" background="True" />
+
+<DisplayEquation equation="\\begin{aligned}U&=\\frac{1}{2}QV \\\\ &=\\frac{1}{2}CV^2 \\\\ &=\\frac{1}{2} \\frac{Q^2}{C} \\end{aligned}" background="true" title="Potential energy stored in a capacitor:"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{In series:}}&& \\frac{1}{C_{eq}}=\\frac{1}{C_1}+\\frac{1}{C_2}+\\cdots \\\\&{\\text{In parallel:}}&& C_{eq}=C_1+C_2+\\cdots  \\end{aligned}" background="true" title="Equivalent capacitance..." />
+
+ 
+</SubSubSection>
+
+<SubSubSection id="Kircchoff" title="Circuit Analysis Rules">
+    
+<DisplayEquation equation="\\sum V=0" title="Kirchhoff Loop Rule: If you start at any point in a circuit and follow a loop in the circuit, the combined changes in potential across circuit elements in the loop will add up to zero." background="True" />
+
+<DisplayEquation equation="\\sum I_{in} = \\sum I_{out}" title="Kirchhoff Junction Rule: All current that flows into a junction must flow out of that junction (current is conserved)" background="True" />
+
+</SubSubSection>
+
+<SubSubSection id="RC" title="RC circuits">
+    
+<DisplayEquation equation="\\tau=RC" title="RC time constant" background="True" />
+
+<p>Charge, voltage, and current in an RC circuit that is charging or discharging follow exponential patterns:</p>
+<DisplayEquation equation="\\begin{aligned}&{\\text{A starts at zero and increases:}}&& A(t)=A_\\infty (1-e^{t / \\tau})  \\\\&{\\text{A starts at maximum and decays:}}&& A(t)=A_0 e^{t / \\tau} \\end{aligned}" background="true" title="Exponential functions A(t) that describe RC circuit charging or discharging, generalized for some quantity A" />
+
+</SubSubSection>
+
+</Section>
+
+<SubSection id="magnetism" title="Magnetism">
+<p>The magnetic field (B-field) is a property of space that is created by the motion of electric charges. We focus separately on (1) The forces magnetic fields exert on moving charges and (2) The magnetic fields created by moving charges</p>
+</SubSection>
+
+<SubSubSection id="3D" title="3D Representations"> 
+<p>When considering magnetic fields and magnetic forces, we must use three-dimensional representations.</p>
+<DisplayEquation equation="\\begin{aligned}&{\\text{Vector points into the screen:}}&& \\bigotimes  \\\\&{\\text{Vector points out of the screen:}}&& \\bigodot \\end{aligned}" background="true" title="Notation for vectors pointing in or out of the screen:" />
+
+<p>I want to create a little simulation that lets students see x y and z axes and drag them around just to make sure they keep in a right-handed coordinate system.</p>
+
+</SubSubSection> 
+
+<SubSubSection id="FB" title="Magnetic Force"> 
+
+
+<p>When a test charge or "charge of interest" is moving through a magnetic field, a magnetic force is exerted on the test charge.</p>
+<p>The direction of the magnetic force is determined using the Magnetic Force right hand rule.</p>
+
+<DisplayEquation equation="|\\vec{F}_B|=|q_t|v_\\perp B = |q_t| v B_\\perp=|q_t| v B \\sin{\\theta}" title="Magnitude of magnetic force acting on a moving charge" background="True" />
+<DisplayEquation equation="r=\\frac{mv_\\perp}{|q|B}" title="The force of a uniform B field on a moving charge will cause it to travel in a circular path of radius r:" background="True" />
+<br>
+<DisplayEquation equation="|\\vec{F}_B|=I_\\perp L B = I L B_\\perp=ILB \\sin{\\theta}" title="Magnitude of magnetic force acting on a current-carrying wire of length L" background="True" />
+
+</SubSubSection>
+
+<SubSubSection id="Amperes" title="Creating Magnetic Fields">
+<CalloutContainer slot="cards">
+<CalloutCard title="Vacuum magnetic permeability">
+			<p>
+				μ<sub>0</sub>=4&pi;×10<sup>-7</sup> T‧m/A<sup>2</sup></p>
+				
+            </CalloutCard>
+        </CalloutContainer>
+Moving charges create magnetic fields (which affect moving test charges).
+
+<p><b>Magnetic field from an infinite current-carrying wire:</b></p>
+<DisplayEquation equation="|\\vec{B}|=\\frac{\\mu_0 I}{2 \\pi r}" title="Magnitude of magnetic field at distance r from the wire" background="True" />
+
+<p>Direction: Grip right hand rule<p>
+
+<p><b>Magnetic field inside a current-carrying solenoid with n=N/L turns:</b></p>
+<DisplayEquation equation="|\\vec{B}|=\\mu_0 n I" title="Magnitude of magnetic field inside solenoid" background="True" /><br><br>
+
+<p><b>Magnetic force exerted by one current-carrying wire on another*:</b></p>
+<DisplayEquation equation="|\\vec{F}_\\text{1 on 2}|=\\frac{\\mu_0 I_1 I_2 L}{2 \\pi r}" title="Force exerted by Wire 1 on a Wire 2 of length L" background="True" />
+<p>*Assuming rules about magnetic force on a wire are satisfied</p>
+
+</SubSubSection>
+
+<SubSection id="Units" title="SI Prefixes">
+       <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Power</th>
+            <th class="table-shaded">Prefix</th>
+            <th class="table-shaded">Symbol</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+		<tr>
+            <td><InlineEquation equation="10^{12}" /></td>
+            <td>tera</td>
+            <td>T</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{9}" /></td>
+            <td>giga</td>
+            <td>G</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{6}" /></td>
+            <td>mega</td>
+            <td>M</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{3}" /></td>
+            <td>kilo</td>
+            <td>k</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{0}" /></td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{-2}" /></td>
+            <td>centi</td>
+            <td>c</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{-3}" /></td>
+            <td>milli</td>
+            <td>m</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{-6}" /></td>
+            <td>micro</td>
+            <td>&mu;</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{-9}" /></td>
+            <td>nano</td>
+            <td>n</td>
+        </tr>
+		<tr>
+            <td><InlineEquation equation="10^{-12}" /></td>
+            <td>pico</td>
+            <td>p</td>
+        </tr>
+        
+        </tbody>
+    </DisplayTable>
+</SubSection>	
+
+
+<SubSection id="symbols" title="Symbols">
+</SubSection>	
+	
+            
+    <SubSubSection id="greek" title="Greek letters">
+        <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Symbol</th>
+            <th class="table-shaded">Name</th>
+            <th class="table-shaded">Meaning in Physics 102</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+		<tr>
+            <td><InlineEquation equation="\\gamma" /></td>
+            <td>gamma</td>
+            <td>Symbol for high-energy EM wave</td>
+            
+        </tr>
+        <tr>
+            <td><InlineEquation equation="\\Delta" /></td>
+            <td>Delta</td>
+            <td>Symbol for change in a quantity</td>
+            
+        </tr>
+        <tr>
+            <td><InlineEquation equation="\\epsilon" /> or <InlineEquation equation="\\varepsilon" /></td>
+            <td>epsilon</td>
+            <td>Electric polarizability of a material ("permittivity")<br>Careful: Similar to emf symbol <InlineEquation equation="\\mathcal{E}" /></td>
+            
+        </tr>
+				<tr>
+            <td><InlineEquation equation="\\theta" /></td>
+            <td>theta</td>
+            <td>Angle</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\kappa" /></td>
+            <td>kappa</td>
+            <td>Dielectric constant of a material</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\lambda" /></td>
+            <td>lambda</td>
+            <td>Wavelength</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\mu" /></td>
+            <td>mu</td>
+            <td>Linear (charge) density<br>OR<br>Magnetization in a material in a magnetic field</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\pi" /></td>
+            <td>pi</td>
+            <td>The ratio of a circle's circumference to its diameter</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\rho" /></td>
+            <td>rho</td>
+            <td>Volume (charge) density</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\sigma" /></td>
+            <td>sigma (lower case)</td>
+            <td>Area density<br>or<br>Blackbody radiation constant</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\Sigma" /></td>
+            <td>Sigma (upper case)</td>
+            <td>The sum of the following quantity</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\tau" /></td>
+            <td>tau</td>
+            <td>Symbol for torque<br>OR<br>Symbol for time constant in a circuit</td>
+            
+        </tr>
+
+		<tr>
+            <td><InlineEquation equation="\\phi" /></td>
+            <td>phi (lower case)</td>
+            <td>Angle</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\Phi" /></td>
+            <td>Phi (upper case)</td>
+            <td>Symbol for flux</td>
+            
+        </tr>
+        </tbody>
+    </DisplayTable>
+    
+
+    
+
+      
+	</SubSubSection>
+	
+	    <SubSubSection id="math-symbols" title="Mathematical Symbols">
+		<p>This section uses the placeholder variable <InlineEquation equation="A" />. You may use any relevant variable in its place.</p>
+        <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Symbol</th>
+            <th class="table-shaded">Meaning</th>
+            <th class="table-shaded">Use/Definition</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+		<tr>
+            <td><InlineEquation equation="\\Delta" /></td>
+            <td>Change</td>
+            <td><InlineEquation equation="\\Delta A =A_{final}-A_{initial}" /></td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\sum{}" /></td>
+            <td>Sum</td>
+            <td>For a series of quantities <InlineEquation equation="A_1" />, <InlineEquation equation="A_2" />, <InlineEquation equation="A_3" />, etc., <InlineEquation equation="\\sum A =A_{1}+A_{2}+A_{3}+\\cdots" /></td>
+            
+        </tr>
+        <tr>
+            <td><InlineEquation equation="\\vec{A}" /></td>
+            <td>Vector symbol</td>
+            <td>The variable represents a vector quantity with magnitude and direction.<br>May also be drawn with partial arrow <InlineEquation equation="\\stackrel{\\rightharpoonup}{A}" /></td>
+            
+        </tr>
+        <tr>
+            <td><InlineEquation equation="|\\vec{A}|" /></td>
+            <td>Vector magnitude</td>
+            <td>The magnitude of the vector <InlineEquation equation="\\vec{A}" /><br>If <InlineEquation equation="\\vec{A}" /> is known to be a vector, the magnitude may also be written as <InlineEquation equation="A" /></td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="A_x" /></td>
+            <td>x-component of vector A</td>
+            <td>The projection of the vector <InlineEquation equation="\\vec{A}" /> (magnitude and direction) onto the x axis.<br>Similarly, <InlineEquation equation="A_y" /> and <InlineEquation equation="A_z" /> are the projections of <InlineEquation equation="\\vec{A}" /> onto the y and z axes, respectively.</td>
+          
+        </tr>
+		<tr>
+            <td><InlineEquation equation="A_\\parallel" /></td>
+            <td>Parallel component notation</td>
+            <td>The component of vector <InlineEquation equation="\\vec{A}" /> that is parallel to a second reference vector.</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="A_\\perp" /></td>
+            <td>Perpendicular component notation</td>
+            <td>The component of vector <InlineEquation equation="\\vec{A}" /> that is perpendicular to a second reference vector.</td>
+            
+        </tr>
+		<tr>
+            <td><InlineEquation equation="A(x)" /></td>
+            <td><InlineEquation equation="A" /> as a function of the variable <InlineEquation equation="x" /></td>
+            <td>An expression for the value of <InlineEquation equation="A" /> for any input value of the variable <InlineEquation equation="x" />.<br>Be careful: <InlineEquation equation="A(x)" /> does <b>not</b> mean <InlineEquation equation="A\\times x" /></td>
+          
+        </tr>
+		<tr>
+            <td><InlineEquation equation="A_0" /></td>
+            <td>Initial value of <InlineEquation equation="A" /></td>
+            <td>Typically, the value of <InlineEquation equation="A" /> when <InlineEquation equation="t=0" />.<br>In function format, <InlineEquation equation="A(t=0)=A_0" /><br>May be said as "A naught".</td>
+          
+        </tr>
+		<tr>
+            <td><InlineEquation equation="\\arccos(A)" /> <br>or<br> <InlineEquation equation="\\cos^{-1}(A)" /></td>
+            <td>Inverse cosine of <InlineEquation equation="A" /><br>Similar for other trigonometric functions.</td>
+            <td>Inverse of the cosine function.<br>Finds the value of <InlineEquation equation="\\theta" /> that gives <InlineEquation equation="\\cos(\\theta)=A" /><br>May appear as "acos" on some calculators.</td>
+            
+        </tr>
+		
+        </tbody>
+    </DisplayTable>
+    
+
+    
+
+	</SubSubSection>
+	
+	
+		
+    
+
+ 
+
+   
+
+    
+
+</Layout>
