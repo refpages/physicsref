@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Circuits">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#symbols'>Symbols</a>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#R'>Resistors</a>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#C'>Capacitors</a>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Kircchoff'>Analysis Rules</a>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#RC'>RC Circuits</a>
+                
+        </ul>
+    </div>
+
+
+
+
+		
+<Section id="circuits" title="Circuits">
+<p>Circuits are typically considered element by element, where an element is a single part like a battery or a resistor. Solving circuit problems often involves setting up some kind of equation or system of equations.</p>
+<DisplayEquation id="symbols" equation="\\begin{aligned}&{\\text{Charge}}&& Q \\\\&{\\text{Current}}&& I=\\frac{\\Delta Q}{\\Delta t} \\\\&{\\text{Potential difference}}&& V \\\\&{\\text{Battery emf (in volts)}}&& \\mathcal{E} \\\\&{\\text{Resistance}}&& R  \\\\&{\\text{Capacitance}}&& C  \\end{aligned}" background="true" title="Symbols in circuit analysis" />
+<Warning title="Voltage differences in circuits" id="V">
+            For circuits only: The variable V (called "Voltage") is used to represent the electric potential difference across a <b>single</b> circuit element.
+        </Warning>
+</Section>
+
+<SubSection id="R" title="Resistors">    
+		
+<DisplayEquation equation="R=\\frac{\\rho L}{A}" title="The resistance of a resistor is determined by its geometry (A and L) and resistivity (𝜌):" background="True" />
+
+<DisplayEquation equation="V=IR" title="The potential difference across a resistor pushes current through the resistor:" background="True" />
+
+<DisplayEquation equation="\\begin{aligned}P&=IV \\\\ &=I^2 R \\\\ &=\\frac{V^2}{R} \\end{aligned}" background="true" title="Power dissipated by a resistor:"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{In series:}}&& R_{eq}=R_1+R_2+\\cdots \\\\&{\\text{In parallel:}}&& \\frac{1}{R_{eq}}=\\frac{1}{R_1}+\\frac{1}{R_2}+\\cdots  \\end{aligned}" background="true" title="Equivalent resistance..." />
+
+</SubSection>
+
+<SubSection id="C" title="Capacitors">    
+<CalloutContainer slot="cards">
+<CalloutCard title="Constants for capacitors">
+			<p>Permittivity of free space:<br>
+				ε<sub>0</sub>=8.85×10<sup>-12</sup> C<sup>2</sup>/Nm<sup>2</sup></p>
+				<p>Dielectric constant of vacuum<br>
+				𝜅<sub>0</sub>=1</p>
+            </CalloutCard>
+        </CalloutContainer>
+		
+<DisplayEquation equation="C=\\kappa \\frac{\\varepsilon_0 A}{d}" title="The capacitance of a parallel plate capacitor is determined by its geometry (A and d) and the dielectric constant of the material between the plates (𝜅):" background="True" />
+
+<DisplayEquation equation="|\\vec{E}|=\\frac{Q}{\\varepsilon_0 A}" title="Electric field between the capacitor plates (in vacuum):" background="True" />
+
+<DisplayEquation equation="V=CQ" title="The potential difference across a capacitor stores charge in that capacitor:" background="True" />
+
+<DisplayEquation equation="\\begin{aligned}U&=\\frac{1}{2}QV \\\\ &=\\frac{1}{2}CV^2 \\\\ &=\\frac{1}{2} \\frac{Q^2}{C} \\end{aligned}" background="true" title="Potential energy stored in a capacitor:"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{In series:}}&& \\frac{1}{C_{eq}}=\\frac{1}{C_1}+\\frac{1}{C_2}+\\cdots \\\\&{\\text{In parallel:}}&& C_{eq}=C_1+C_2+\\cdots  \\end{aligned}" background="true" title="Equivalent capacitance..." />
+
+ 
+</SubSection>
+
+<SubSection id="Kircchoff" title="Circuit Analysis Rules">
+    
+<DisplayEquation equation="\\sum V=0" title="Kirchhoff Loop Rule: If you start at any point in a circuit and follow a loop in the circuit, the combined changes in potential across circuit elements in the loop will add up to zero." background="True" />
+
+<DisplayEquation equation="\\sum I_{in} = \\sum I_{out}" title="Kirchhoff Junction Rule: All current that flows into a junction must flow out of that junction (current is conserved)" background="True" />
+
+</SubSection>
+
+<SubSection id="RC" title="RC circuits">
+    
+<DisplayEquation equation="\\tau=RC" title="RC time constant" background="True" />
+
+<p>Charge, voltage, and current in an RC circuit that is charging or discharging follow exponential patterns:</p>
+<DisplayEquation equation="\\begin{aligned}&{\\text{A starts at zero and increases:}}&& A(t)=A_\\infty (1-e^{t / \\tau})  \\\\&{\\text{A starts at maximum and decays:}}&& A(t)=A_0 e^{t / \\tau} \\end{aligned}" background="true" title="Exponential functions A(t) that describe RC circuit charging or discharging, generalized for some quantity A" />
+
+</SubSection>
+
+</Section>
+</Layout>

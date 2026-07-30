@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Dynamics: Motion, Forces, and Energy">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#kinematics'>Motion</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#forces'>Forces and Torque</a></li>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#energy'>Work and Energy</a></li>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#bigG'>Universal Gravitation</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+<Section id="dynamics" title="Dynamics: Motion, Forces, and Energy">
+<p>
+            This page contains formulas from Physics 1 that will be useful this semester.
+        </p>
+		<p>See the Symbols, Units, and Constants page for help decoding mathematical operations or subscripts shown in this page.</p>
+
+		
+		
+<SubSection id="kinematics" title="Motion">
+<p>These equations describe the <b>one dimensional</b> motion of an object traveling with constant acceleration <InlineEquation equation="a" /> from initial position <InlineEquation equation="x_0" /> and having initial velocity <InlineEquation equation="v_0" />.</p>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Position }\ x \\text{ at time } t:}&& {x=x_0+v_0 t + \\frac{1}{2}at^2} \\\\&{\\text{Velocity }\ v \\text{ at time } t:}&& v=at \\\\&{\\text{Velocity }\ v \\text{ after traveling } \\Delta x :}&& v^2={v_0}^2+2a\\Delta x \\end{aligned}" background="true" title="One-dimensional constant acceleration motion:"/>
+
+<DisplayEquation equation="a_c=\\frac{v^2}{r}" title="Centripetal acceleration: Acceleration perpendicular to an object's velocity will cause it to travel in a circle of radius r:" background="True" />
+
+<DisplayEquation equation="\\vec{p}=m\\vec{v}" title="An object's momentum is a vector that points in the same direction as its velocity:" background="True" />
+
+
+</SubSection>
+
+
+
+
+<SubSection id="forces" title="Forces"> 
+<p>Forces are vector quantities. Any time you add forces together, you are adding vectors.</p>
+<CalloutContainer slot="cards">
+<CalloutCard title="Acceleration due to gravity (near the surface of Earth)">
+			We use "standard gravity" for calculations:<br>
+			g=9.81 m/s<sup>2</sup>
+            </CalloutCard>
+        </CalloutContainer>   
+<DisplayEquation equation="\\sum\\vec{F}=m\\vec{a}" title="The total (vector sum) force acting on an object will cause its (vector) acceleration:" background="True" />
+<DisplayEquation equation="\\begin{aligned}&{\\text{On the }\ x \\text{ axis} :}&& F_{1x}+F_{2x}+\\cdots=ma_x \\\\&{\\text{On the }\ y \\text{ axis}:}&& F_{1y}+F_{2y}+\\cdots=ma_y \\end{aligned}" background="true" title="We solve problems by applying Newton's 2nd Law one dimension at a time: All forces along one dimension cause acceleration along the same dimension"/>
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Gravity (near Earth's surface)}}&& F_g=mg \\\\&{\\text{Spring force}}&& \\vec{F}_s=-k\\vec{x} \\end{aligned}" background="true" title="Macroscopic force models"/>
+<br>
+<DisplayEquation equation="\\begin{aligned}\\tau&=F_\\perp  r \\\\ &=F r_\\perp \\\\ &=Fr\\sin{\\theta} \\end{aligned}" background="true" title="A force applied perpendicular to a distance r from an object's rotation axis will create torque about that axis:"/>
+</SubSection>
+
+
+<SubSection id="energy" title="Work and Energy"> 
+<DisplayEquation equation="\\begin{aligned}W_F&=F_\\parallel  d \\\\ &=F d_\\parallel \\\\ &=Fd\\cos{\\theta} \\end{aligned}" background="true" title="Each force F does work (transfers energy) when an object is displaced distance d parallel to that force:"/>
+<DisplayEquation equation="P=\\frac{W}{\\Delta t}" title="Power is defined as the rate of energy transfer:" background="True"/>
+<DisplayEquation equation="\\begin{aligned}P_F&=F_\\parallel  v \\\\ &=F v_\\parallel \\\\ &=Fv\\cos{\\theta} \\end{aligned}" background="true" title="Each force F pushing an object at velocity v parallel to the force has power (energy transfer rate):"/>
+<br><br>
+<DisplayEquation equation="K=\\frac{1}{2}mv^2" title="A moving object has kinetic energy:" background="True"/>
+<DisplayEquation equation="W_{total}=\\Delta K" title="Total work on an object changes that object's kinetic energy:" background="True"/>
+<br><br>
+<DisplayEquation equation="E=K+U" title="Total mechanical energy of an object combines kinetic and potential energy:" background="True"/>
+<DisplayEquation equation="\\begin{aligned}&{\\text{Conversion, Work to PE:}}&& W_c=-\\Delta U \\\\&{\\text{Gravitational Potential Energy:}}&& U_{g}=mgh \\\\&{\\text{Spring Potential Energy:}}&& U_s=\\frac{1}{2}kx^2 \\end{aligned}" background="true" title="Conservative forces can store energy as Potential Energy (PE)" />
+<DisplayEquation equation="E_i+W_{nc}=E_f" title="Nonconservative work changes the mechanical energy of an object:" background="True"/>
+</SubSection>
+
+
+
+<SubSection id="bigG" title="Universal Gravitation">
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Gravitational constant">
+			G=6.67×10<sup>-11</sup> N m<sup>2</sup>/kg<sup>2</sup>
+            </CalloutCard>
+        </CalloutContainer>
+		
+<p>Two objects having masses m₁ and m₂ will exert a gravitational force on each other.</p>
+<p>This force is always mutual and attractive (i.e., the masses pull toward each other).</p>
+
+<DisplayEquation equation="|\\vec{F}_{1\\text{ on }2}|=G\\frac{m_1 m_2}{{r}^2}" title="Magnitude of gravitational force exerted on mass 2 by mass 1 when separated by distance r:" background="True" />
+
+<DisplayEquation equation="U_G=-G\\frac{m_1 m_2}{{r}}" title="Gravitational potential energy stored between the two masses is:" background="True" />
+<Warning title="Negative potential energy" id="GPE">
+            The negative sign is not a mistake in the formula sheet and should not be left out of your calculations. As the two masses get closer to each other, gravitational potential energy must decrease. Using the negative sign is the only way to make this possible.
+        </Warning>
+</SubSection>
+
+</Section>
+
+</Layout>

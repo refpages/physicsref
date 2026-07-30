@@ -33,7 +33,6 @@ import Col from "../../components/Col.astro";
             </li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#units'>Units</a>
 			<ul class='list-group list-group-flush py-0'> 
-                   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#base-units'>Base Units</a></li>
 				   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#prefixes'>Prefixes</a></li> 
                 </ul></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#constants'>Constants</a></li>
@@ -48,23 +47,14 @@ import Col from "../../components/Col.astro";
         </p>
         
 
-        <Warning title="Read me if you plan to copy/paste this page into your course!" id="copy-paste">
-            Because of where this page is in github, the insert components section at the top of the code is a little different. After copy/pasting this page into your course, remove one '../' from each component line at the top.
-            All insert components statements in the text here and in the style guide have the correct path structure and do not need to be changed. 
-        </Warning>
-
-        <p>
-            Good luck!
-        </p>
-
-        <p>
-            This section of your page should be a brief intro to the topic of the page. Keep it short and sweet here!
-        </p>
-    </Section>
+        
+</Section>
 
 <SubSection id="symbols" title="Symbols">
 	
 	
+            
+
             
     <SubSubSection id="greek" title="Greek letters">
         <DisplayTable id="id" class_="mb-3">
@@ -168,11 +158,7 @@ import Col from "../../components/Col.astro";
 
     
 
-        <CalloutContainer slot="cards">
-            <CalloutCard title="The symbol 𝛑">
-                Although the concept of 𝛑 has existed since at least the ancient Egyptians, the first known use of the symbol 𝛑 for its mathematical purpose was in 1706. <a target="_blank" rel="noopener noreferrer" href="https://www.historytoday.com/archive/feature/man-who-invented-pi" >More information on the adoption of this symbol.</a>
-            </CalloutCard>
-        </CalloutContainer>
+      
 	</SubSubSection>
 	
 	    <SubSubSection id="math-symbols" title="Mathematical Symbols">
@@ -256,149 +242,177 @@ import Col from "../../components/Col.astro";
 
 	</SubSubSection>
 	
-	
 		
     </SubSection>
 
  
 
-    <SubSection id="units" title="Units">
+    <SubSection id="units" title="Units and SI Prefixes">
         <p>
-            You can add little cards to the side of each section. These are meant to contain extra information not critical to what's discussed in the section, such as fun-facts, extra readings related to the material, or real-world applications. 
+            Introductory Physics uses meters, kilograms, and seconds as its base SI units (sometimes called 'mks'). When calculating, most units should be converted to their 10<sup>0</sup> form (no prefix). However, kilograms should be converted to the 10<sup>3</sup> form. Whenever you're not sure, check the units in the constant(s) you are using for calculations.
         </p>
        
 	   
 	   
-	  <SubSubSection id="base-units" title="Base Units and Unit Construction">
-	  <p>Physics uses SI units - that is, it constructs all units out of seconds, meters, kilograms, amperes, kelvins, and moles.</p>
-	  
-	   <DisplayTable id="id" class_="mb-3">
+	 
+       <DisplayTable id="id" class_="mb-3">
         <thead>
         <tr>
-            <th class="table-shaded" noborder>Unit (Symbol)</th>
-            <th class="table-shaded">Quantity</th>
-            <th class="table-shaded">Construction from base units</th>
+            <th class="table-shaded" noborder>Power</th>
+            <th class="table-shaded">Prefix</th>
+            <th class="table-shaded">Symbol</th>
             
         </tr>
         </thead>
         <tbody>
 		<tr>
-            <td>meters (m)</td>
-            <td>Length, distance</td>
-            <td><InlineEquation equation="\\mathrm{m}" /></td>
+            <td><InlineEquation equation="10^{12}" /></td>
+            <td>tera</td>
+            <td>T</td>
             
         </tr>
 		<tr>
-            <td>kilograms (kg)</td>
-            <td>Mass</td>
-            <td><InlineEquation equation="\\mathrm{kg}" /></td>
-            
+            <td><InlineEquation equation="10^{9}" /></td>
+            <td>giga</td>
+            <td>G</td>
         </tr>
 		<tr>
-            <td>seconds (s)</td>
-            <td>Time</td>
-            <td><InlineEquation equation="\\mathrm{s}" /></td>
-            
+            <td><InlineEquation equation="10^{6}" /></td>
+            <td>mega</td>
+            <td>M</td>
         </tr>
 		<tr>
-            <td>Newtons (N)</td>
-            <td>Force</td>
-            <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m}}{\\mathrm{s^2}}" /></td>
-            
+            <td><InlineEquation equation="10^{3}" /></td>
+            <td>kilo</td>
+            <td>k</td>
         </tr>
 		<tr>
-            <td>Joules (J)</td>
-            <td>Energy</td>
-            <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m^2}}{\\mathrm{s^2}}" /></td>
-            
+            <td><InlineEquation equation="10^{0}" /></td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
         </tr>
 		<tr>
-            <td>Watts (W)</td>
-            <td>Power</td>
-            <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m^2}}{\\mathrm{s^3}}" /></td>
-            
-        </tr>
-        <tr>
-            <td>Coulombs (C)</td>
-            <td>Charge</td>
-            <td><InlineEquation equation="\\mathrm{A}\\cdot \\mathrm{s}" /></td>
-            
+            <td><InlineEquation equation="10^{-2}" /></td>
+            <td>centi</td>
+            <td>c</td>
         </tr>
 		<tr>
-            <td>Volts (V)</td>
-            <td>Electric Potential</td>
-             <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m^2}}{\\mathrm{s}^3 \\cdot \\mathrm{A}}" /></td>
-            
+            <td><InlineEquation equation="10^{-3}" /></td>
+            <td>milli</td>
+            <td>m</td>
         </tr>
 		<tr>
-            <td>Amperes (A)</td>
-            <td>Electric Current</td>
-            <td><InlineEquation equation="\\mathrm{A}" /></td>
-            
+            <td><InlineEquation equation="10^{-6}" /></td>
+            <td>micro</td>
+            <td>&mu;</td>
         </tr>
 		<tr>
-            <td>Ohms (<InlineEquation equation="\\Omega" />)</td>
-            <td>Resistance</td>
-             <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m^2}}{\\mathrm{s}^3 \\cdot \\mathrm{A}^2}" /></td>
-            
+            <td><InlineEquation equation="10^{-9}" /></td>
+            <td>nano</td>
+            <td>n</td>
         </tr>
 		<tr>
-            <td>Weber (W)</td>
-            <td>Magnetic flux</td>
-             <td><InlineEquation equation="\\mathrm{kg}\\frac{\\mathrm{m^2}}{\\mathrm{s}^2 \\cdot \\mathrm{A}}" /></td>
-            
+            <td><InlineEquation equation="10^{-12}" /></td>
+            <td>pico</td>
+            <td>p</td>
         </tr>
-		<tr>
-            <td>Farad (F)</td>
-            <td>Capacitance</td>
-             <td><InlineEquation equation="\\mathrm{A}^2\\frac{\\mathrm{s^4}}{\\mathrm{kg} \\cdot \\mathrm{m}^2}" /></td>
-            
-        </tr>
+        
         </tbody>
     </DisplayTable>
 	
-	
-	  </SubSubSection>
     </SubSection>
 
-    <SubSection id="images" title="Adding Images">
-        
-        <p>
-            You can also add images with or without a caption. For info on where images should be saved at, see the <a href="/about/instructions/mechse#setup">setup page</a>. More info on formatting images is in the <a href="/about/docs#images"> Style guide & documentation</a>.
-        </p>
-        <Image src="/sol/bending/Geometry.png" width="4"> Add caption here if you want one </Image>
-    </SubSection>
+<SubSection id="constants" title="Constants">
+		<p>These constants will be used in calculations. You do not need to memorize them.</p>
+        <DisplayTable id="id" class_="mb-3">
+        <thead>
+        <tr>
+            <th class="table-shaded" noborder>Name</th>
+            <th class="table-shaded">Symbol</th>
+            <th class="table-shaded">Value</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+		<tr>
+            <td>Gravity of Earth</td>
+            <td><InlineEquation equation="g" /></td>
+            <td><InlineEquation equation="9.8\\mbox{ m/s}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Gravitational Constant</td>
+            <td><InlineEquation equation="G" /></td>
+            <td><InlineEquation equation="6.67\\times 10^{-11}\\mbox{ m}^3/\\mbox{kg}\\,\\mbox{s}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Electron charge</td>
+            <td><InlineEquation equation="e" /></td>
+            <td><InlineEquation equation="1.6\\times 10^{-19}\\mbox{ C}" /></td>
+            
+        </tr>
+		<tr>
+            <td>Electron mass</td>
+            <td><InlineEquation equation="m_e" /></td>
+            <td><InlineEquation equation="9.11\\times 10^{-31}\\mbox{ kg}" /><br><InlineEquation equation="511\\mbox{ keV}/\\mbox{c}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Proton mass</td>
+            <td><InlineEquation equation="m_p" /></td>
+            <td><InlineEquation equation="1.673\\times 10^{-27}\\mbox{ kg}" /><br><InlineEquation equation="938\\mbox{ keV}/\\mbox{c}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Neutron mass</td>
+            <td><InlineEquation equation="m_n" /></td>
+            <td><InlineEquation equation="1.675\\times 10^{-27}\\mbox{ kg}" /><br><InlineEquation equation="939.5\\mbox{ keV}/\\mbox{c}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Coulomb constant</td>
+            <td><InlineEquation equation="k" /></td>
+            <td><InlineEquation equation="8.99\\times 10^{9}\\mbox{ N}\\,\\mbox{m}^2/\\mbox{C}^2" /><br>Alternatively, <InlineEquation equation="k=\\frac{1}{4\\pi\\varepsilon_0}" /></td>
+            
+        </tr>
+        <tr>
+            <td>Permittivity of free space</td>
+            <td><InlineEquation equation="\\varepsilon_0" /></td>
+            <td><InlineEquation equation="8.85\\times 10^{-12}\\mbox{ C}^2/\\mbox{N}\\,\\mbox{m}^2" /></td>
+            
+        </tr>
+        <tr>
+            <td>Magnetic permeability of free space</td>
+            <td><InlineEquation equation="\\mu_0" /></td>
+            <td><InlineEquation equation="1.257\\times 10^{-6}\\mbox{ T}\\,\\mbox{m}/\\mbox{A}^2" /><br><InlineEquation equation="4\\pi\\times 10^{-7}\\mbox{ T}\\,\\mbox{m}/\\mbox{A}^2" /></td>
+            
+        </tr>
+		<tr>
+            <td>Speed of light in vacuum</td>
+            <td><InlineEquation equation="c" /></td>
+            <td><InlineEquation equation="3\\times 10^{8}\\mbox{ m}/\\mbox{s}" /><br>Alternatively, <InlineEquation equation="c=\\frac{1}{\\sqrt{\\varepsilon_0 \\mu_0}}" /></td>
+            
+        </tr>
+		<tr>
+            <td>Planck constant</td>
+            <td><InlineEquation equation="h" /></td>
+            <td><InlineEquation equation="6.626\\times 10^{-34}\\mbox{ J}\\,\\mbox{s}"  /></td>
+            
+        </tr>
+		<tr>
+            <td>Electron volt (unit conversion)</td>
+            <td><InlineEquation equation="eV" /></td>
+            <td><InlineEquation equation="1\\mbox{ eV}=1.6\\times 10^{-19}\\mbox{ J}"  /></td>
+            
+        </tr>
+		
+        </tbody>
+    </DisplayTable>
+    
 
-    <SubSection id="math-section" title="Math in physicsref">
-        <p>
-            <InlineEquation equation="\\LaTeX"/> can be used inside your pages. Just like in Latex, we differentiate between inline-math and display-math.
-            One difference betweem <InlineEquation equation="\\LaTeX"/> and these pages is when writing math in <InlineEquation equation="\\LaTeX"/>, you use one backslash <InlineEquation equation="(\\backslash)"/>, but in the reference pages you need to use two <InlineEquation equation="(\\backslash \\backslash)"/>.
-        </p>
-    </SubSection>
+    
 
-    <SubSubSection id="inline-math" title="Inline Math">
-        Inline math is math font text inside of sentences where the lines don't break. 
-        For example, <InlineEquation equation="E = mc^2"/> as proved by Einstein.
-        This is most commonly used for variable letters like "the moment <InlineEquation equation="M"/>" or units like "the units for moment are <InlineEquation equation="Nm"/>".
-
-    </SubSubSection>
-
-    <SubSubSection id="display-math" title="Display Math">
-        
-        Display math is for relevant course equations. These are denoted by a different format from the surrounding text. 
-        For example, the same equation as above would look like the following.  
-        <DisplayEquation equation="E = mc^2" title="Mass-energy equivalence" background="True" />
-
-        A block of equations can also be put in the same box if needed. 
-        <DisplayEquation equation="\\begin{aligned}&{\\text{Find a vector}}&&\\mathbf {x} \\\\&{\\text{that maximizes}}&&\\mathbf {c} ^{\\mathsf {T}}\\mathbf {x} \\\\&{\\text{subject to}}&&A\\mathbf {x} \\leq \\mathbf {b} \\\\&{\\text{and}}&&\\mathbf {x} \\geq \\mathbf {0} .\\end{aligned}" background="true" title="Standard form of a Linear-Program." id="lp-std-form"/>
-
-        When we want to show students how a particular equation is derived, we can add an expendable derivation field.
-        <DisplayEquation equation="P\\left(T>s+t\\mid T>s\\right)=P(T>t),\\qquad \\forall s,t\\geq 0." background="true" title="Memorylessness of the exponential distribution." id="exp-memoryless" derivation="true">
-            <DisplayEquation equation="\\begin{aligned}P\\left(T>s+t\\mid T>s\\right)&={\\frac {P \\left(T>s+t\\cap T>s\\right)}{P \\left(T>s\\right)}} \\\\ &={\\frac {P \\left(T>s+t\\right)}{P \\left(T>s\\right)}} \\quad \\text{since} \\; [0, s) \\subset [0, s+t) \\\\ &={\\frac {e^{-\\lambda (s+t)}}{e^{-\\lambda s}}} \\\\ &=e^{-\\lambda t} \\\\ &=P(T>t).\\end{aligned}" />
-        </DisplayEquation>
-        <Warning title="Do not reuse IDs" id="unique-ids">
-            These expendable warning fields can be used to emphasize that students should really pay attention to what's inside. Here, we want to warn you not to reuse IDs, since unique IDs are essential to certain features working correctly.
-        </Warning>
-    </SubSubSection>
+	</SubSection>
 
 </Layout>

@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Light and Optics">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#matter'>Light and Matter</a>
+                <ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#reflection'>Reflection</a></li> 
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#refraction'>Refraction</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#geometry'>Useful Geometry</a></li>					
+					
+                </ul>
+            </li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#int-dif'>Interference and Diffraction</a>
+			<ul class='list-group list-group-flush py-0'> 
+                   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#double'>Double Slit Interference</a></li>
+				   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#single'>Single Slit Diffraction</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#circular'>Circular Aperture Diffraction</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#small'>Small Angle Approximations</a></li>					
+                </ul></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#geo-opt'>Geometric Optics</a><ul class='list-group list-group-flush py-0'> 
+				<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#double'>Mirror and Lens Equations</a></li>
+				   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#single'>Telescope Magnification</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#circular'>Compound Microscope Magnification</a></li>
+        </ul>
+		</li>
+    </div>
+
+
+
+<Section id="main-section" title="Light and Optics">
+        <p>
+            This page provides a key to interpreting symbols and units in Introductory Electricity & Magnetism, and provides values of constants in SI units.
+        </p>
+        
+
+        
+    </Section>
+
+<SubSection id="matter" title="Light and Matter">
+
+<SubSubSection id="reflection" title="Reflection">
+<DisplayEquation equation="\\theta_{incident}=\\theta_{reflected}" title="Light reflects off a surface at an angle equal to its incident angle (Law of reflection):" background="True" />
+</SubSubSection>
+
+<SubSubSection id="refraction" title="Refraction">
+	
+<DisplayEquation equation="v=\\frac{c}{n}" title="The speed of an EM wave changes when it travels through matter. The index of refraction n tells us how much:" background="True" />	
+
+<DisplayEquation equation="n_1\\sin\\theta_1=n_2\\sin\\theta_2" title="EM waves bend when they change medium ('Snell's Law'):" background="True" />
+
+<DisplayEquation equation="\\sin\\theta_c=\\frac{n_2}{n_1}" title="Total internal reflection happens at the critical angle:" background="True" />
+            
+    
+</SubSubSection>
+
+<SubSubSection id="geometry" title="Useful Geometry">
+<p>The sum of all angles in a triangle is 180 deg.<p>
+<p>The sum of all angles in a quadrilateral is 360 deg.</p>
+<p>The sum of all angles that make a line is 180 deg.</p>
+<p>Something about parallel lines and angles</p>
+<p>Something about similar triangles</p>
+</SubSubSection>
+
+</SubSection>	    
+</Layout>

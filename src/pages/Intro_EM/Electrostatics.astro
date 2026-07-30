@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Electrostatics">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#coulomb'>Electric Force</a>
+            </li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Efield'>Electric Field</a>
+			<ul class='list-group list-group-flush py-0'> 
+                   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Efieldq'>Point Charges</a></li>
+				   <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Gauss'>Gauss' Law</a></li> 
+                </ul></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#EPE'>Electric Potential Energy</a></li>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#V'>Electric Potential</a></li>
+        </ul>
+    </div>
+
+
+
+<Section id="electrostatics" title="Electrostatics:<br> Electric force, fields, and potential">
+<p></p>
+
+<CalloutContainer slot="cards">
+            <CalloutCard title="Electrostatics constants">
+			<p>Electron charge:<br>
+                e=1.60×10<sup>-19</sup> C</p>
+			<p>Coulomb constant:<br>
+                k=1/4&#x3C0;ε<sub>0</sub>=8.99×10<sup>9</sup> N‧m<sup>2</sup>/C<sup>2</sup></p>
+				<p>Permittivity of free space:<br>
+				ε<sub>0</sub>=8.85×10<sup>-12</sup> C<sup>2</sup>/N‧m<sup>2</sup></p>
+            </CalloutCard>
+        </CalloutContainer>
+
+ 
+		
+<SubSection id="coulomb" title="Electric Force">
+<p>Electric charges exert mutual electric force on each other: <InlineEquation equation="\\vec{F}_{1\\text{ on }2}=-\\vec{F}_{2\\text{ on }1}" />.</p>
+<p>Determining the direction of <InlineEquation equation="\\vec{F}_{1\\text{ on }2}"/> or <InlineEquation equation="\\vec{F}_{2 \\text{ on }1}"/> using a mathematical expression is beyond the scope of this course. Instead, you must use visual geometry to determine the force direction.</p>
+
+<DisplayEquation equation="|\\vec{F}_{1\\text{ on }2}|=k\\frac{|q_1|\\cdot|q_2|}{{r}^2}" title="Magnitude of electric force exerted on Charge 2 by Charge 1 when separated by distance r:" background="True" />
+
+</SubSection>
+
+
+
+
+<SubSection id="Efield" title="Electric Field (E-field)">
+<p>Electric field is a property of space that is created by the placement of electric charges. We focus separately on (1) The forces electric fields exert on test charges and (2) The electric fields created by electric charges</p>
+<p>When a test charge or "charge of interest" is placed in the field, a force is exerted on the test charge.</p>
+<DisplayEquation equation="\\vec{F}=q_t\\vec{E}" title="Any electric field E will exert a force on a test charge qₜ placed in that field:" background="True" />
+
+<p id="Efieldq">The electric field is a vector. However, we can use equations to determine the magnitude of the field created by charges.</p>
+<DisplayEquation equation="|\\vec{E}|=k\\frac{|q|}{r^2}" title="A point charge q creates an electric field E at a distance r from the charge:" background="True" />
+<DisplayEquation equation="\\vec{E}_{total}=\\vec{E}_{q_1}+\\vec{E}_{q_2}+\\vec{E}_{q_3}+\\cdots" title="Electric fields from multiple charges add by superposition:" background="True" />
+</SubSection>
+
+
+
+<SubSection id="Gauss" title="">
+<p>For complicated (but symmetric) charge arrangements, we use a different approach:</p>
+
+		
+<DisplayEquation equation="\\begin{aligned}&{\\text{Electric flux definition:}} && \\Phi_E=E_\\parallel A_S \\\\ &{\\text{Enclosed charge creates electric flux:}} && \\Phi_E=\\frac{q_{enc}}{\\varepsilon_0} \\\\  \\end{aligned}" background="true" title="Electric field is related to charge enclosed by an imaginary 'Gaussian Surface.' The direction of the surface is normal (perpendicular) to the surface and points outward." >
+</DisplayEquation>
+            
+</SubSection>
+
+
+
+<SubSection id="U" title="Electric Potential Energy">    
+<p>The electric force is a conservative force.</p>
+<DisplayEquation equation="W_E=-\\Delta U_E" title="Work by the E-field borrows from potential energy:" background="True" />
+
+<DisplayEquation equation="U_{12}=k\\frac{q_1 q_2}{r}" title="For a group of point charges, each pair of charges stores electric potential energy:" background="True" />
+<Warning title="Negative potential energy" id="EPE">
+            Electric potential energy can be positive or negative. It is important to keep track of the sign of this scalar quantity.
+        </Warning>
+
+<p>Additional reference: <a  href='#energy'>Energy equations</a></p>
+</SubSection>
+
+<SubSection id="V" title="Electric Potential">    
+<p>Electric potential (V) is a scalar property of a point in space that is created by the placement of electric charges.</p>
+
+<DisplayEquation equation="\\Delta U=q_t \\Delta V" title="When a test charge qₜ is moved across electric potential, electric potential energy of the system changes:" background="True" />
+
+<DisplayEquation equation="V=k\\frac{q}{r}" title="A point charge q creates an electric potential V at a distance r from the charge:" background="True" />
+<DisplayEquation equation="V_{total}=V_{q_1}+V_{q_2}+V_{q_3}+\\cdots" title="Electric potentials from multiple charges add by superposition:" background="True" />
+
+<DisplayEquation equation="\\Delta V = E \\cdot \\Delta d_\\parallel" title="Electric potential difference across a uniform electric field:" background="True" />
+
+</SubSection>
+</Section>
+
+
+</Layout>

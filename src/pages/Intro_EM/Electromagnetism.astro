@@ -1,0 +1,145 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import SubSection from "../../components/SubSection.astro";
+import SubSubSection from "../../components/SubSubSection.astro";
+import SubSubSubSection from "../../components/SubSubSubSection.astro";
+import CalloutContainer from "../../components/CalloutContainer.astro";
+import CalloutCard from "../../components/CalloutCard.astro";
+import InlineEquation from "../../components/InlineEquation.astro";
+import DisplayEquation from "../../components/DisplayEquation.astro";
+import Image from "../../components/Image.astro"
+import DisplayTable from "../../components/DisplayTable.astro";
+import Warning from "../../components/Warning.astro";
+import InlineCanvas from "../../components/InlineCanvas.astro";
+import Row from "../../components/Row.astro";
+import Col from "../../components/Col.astro";
+    
+
+
+
+---
+
+<Layout title="Electromagnetism">
+
+    <div slot="navtree">
+        <ul class='list-group list-group-flush py-0'> 
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#induction'>Electromagnetic Induction</a>
+			<ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Transform'>Transformers</a></li> 
+					
+                </ul>
+                
+            </li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#RMS'>RMS Values</a></li>
+			<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Waves'>Electromagnetic Waves</a>
+			<ul class='list-group list-group-flush py-0'> 
+                    <li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#EMProps'>Wave Properties</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#Power'>Power and Intensity</a></li>
+					<li class='list-group-item py-0'><a class='text-decoration-none subsubsection' href='#u'>Energy Density</a></li> 
+					
+                </ul></li>
+        </ul>
+    </div>
+
+
+
+<Section id="main-section" title="Electromagnetism">
+        <p>
+            Electric fields and Magnetic fields are linked to each other.
+        </p>
+        
+
+        
+    </Section>
+
+<SubSection id="induction" title="EM Induction">
+<p>Magnetic fields exert force on moving charges; in the right conditions, this process can cause current to flow in a loop.</p>
+
+<DisplayEquation equation="\\Phi_B=B_\\parallel A \\\\ " title="Magnetic flux through a surface A (direction of A is normal to the surface):" background="True" />
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{In general:}} && \\mathcal{E}=-N\\frac{\\Delta \\Phi_B}{\\Delta t} \\\\ &{\\text{When area is constant:}} && \\mathcal{E}=-NA\\frac{\\Delta B_\\parallel}{\\Delta t} \\\\  &{\\text{When field is constant:}} && \\mathcal{E}=-NB_\\parallel\\frac{ \\Delta A}{\\Delta t} \\\\ &{\\text{When loop rotates:}} && |\\mathcal{E}|=\\omega N A B \\sin{(\\omega t)} \\\\  \\end{aligned}" background="true" title="Changing flux in a loop of N turns induces EMF:" >
+</DisplayEquation>	
+	
+        <CalloutContainer >
+            <CalloutCard title="Angular frequency">
+                <p>Rotation frequency can be represented in Hertz (cycles per second, f) or in radians per second (ω). The conversion between the two is ω=2&pi;f</p>
+            </CalloutCard>
+        </CalloutContainer>
+	</SubSection>
+	
+		<SubSubSection id="Transform" title="Transformers">
+<p>In a transformer, a primary coil (P) with N<sub>P</sub> turns is driven by a power source, causing emf to be induced in a secondary coil (S) with N<sub>S</sub> turns.</p>
+
+<DisplayEquation equation="\\frac{V_P}{V_S}=\\frac{I_S}{I_P}=\\frac{N_P}{N_S} \\\\ " title="Voltage, current, and turn relationships in a transformer" background="True" />
+	
+	</SubSubSection>
+	
+	<SubSection id="RMS" title="RMS values">
+<p>Alternating Current signals are described using Root Mean Squared (RMS) values. These values represent the equivalent constant Direct Current (DC) voltage for the same amount of power used.</p>
+
+
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Voltage:}} && V_{rms}={\\textstyle\\frac{1}{\\sqrt{2}}}V_{max} \\\\ &{\\text{Current:}} && I_{rms}={\\textstyle\\frac{1}{\\sqrt{2}}}I_{max} \\\\  \\end{aligned}" background="true" title="RMS Voltage and Current" >
+</DisplayEquation>	
+	
+	</SubSection>
+	
+	<SubSection id="Waves" title="Electromagnetic Waves">
+	
+<p>Electromagnetic waves involves the simultaneous "waving" of electric fields and magnetic fields as they propagate through space.</p>
+<DisplayEquation id="properties" equation="\\begin{aligned}&{\\text{Propagation velocity}}&& v \\\\&{\\text{Frequency}}&& f \\\\&{\\text{Wavelength}}&& \\lambda \\\\&{\\text{Power (Usually from Source)}}&& P  \\\\&{\\text{Intensity}}&& I \\text{ or }S \\\\&{\\text{Energy density}}&& u \\end{aligned}" background="true" title="Wave properties" />
+
+<DisplayEquation equation="v=\\lambda f" title="Relationship between wavelength, frequency, and wave speed:" background="True" />
+
+
+
+	</SubSection>
+<SubSubSection id="EMProps" title="EM Wave Properties">
+<DisplayEquation  equation="c=\\frac{1}{\\sqrt{\\varepsilon_0 \\mu_0}}  =3\\times 10^8 \\mbox{ m/s} " background="true" title="Speed of EM waves in vacuum" />
+<DisplayEquation  equation="|E|=c|B| " background="true" title="Electric and Magnetic Field magnitude relationship" />
+
+
+		</SubSubSection>
+		
+		
+<SubSection id="Power" title="EM Wave Power and Intensity">
+<p>Electric and Magnetic fields in an EM wave are not constant. For this reason, we describe energy transmission with EM waves using time-averaged values.</p>
+<DisplayEquation equation="\\begin{aligned}&{\\text{Bracket around variable}}&& \\langle x \\rangle \\\\&{\\text{Line over variable}}&& \\overline{x}  \\end{aligned}" background="true" title="Symbols to indicate a value is time-averaged" />
+
+
+
+<DisplayEquation  equation="S=I=\\frac{\\langle P \\rangle}{A} " background="true" title="Wave Intensity (S or I) measures average wave power per unit area at a given location:" />
+		</SubSection>
+		
+<SubSubSection	id="u" title="EM Wave Energy Density"	>
+
+<CalloutContainer slot="cards">
+            <CalloutCard title="Electromagnetism constants">
+			<p>Permittivity of free space:<br>
+				&epsilon;<sub>0</sub>=8.85×10<sup>-12</sup> C<sup>2</sup>/N‧m<sup>2</sup></p>
+			<p>Vacuum magnetic permeability:<br>
+                &mu;<sub>0</sub>=4&pi;×10<sup>-7</sup> T‧m/A<sup>2</sup></p>
+			<p>These two properties of vacuum allow EM waves to travel at the speed of light:<br>
+                c=1/√(&epsilon;<sub>0</sub>&mu;<sub>0</sub>)</p>
+            </CalloutCard>
+        </CalloutContainer>
+
+<DisplayEquation  equation="S=I=\\langle u_{total} \\rangle c " background="true" title="Time-averaged total energy density is related to intensity:" />
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Electric energy density:}}&& u_E={\\textstyle \\frac{1}{2}}\\varepsilon_0 E^2 \\\\&{\\text{Magnetic energy density:}}&& u_B={\\textstyle \\frac{1}{2 \\mu_0}} B^2  \\end{aligned}" background="true" title="Electric field and Magnetic field carry energy distributed with energy density:" />
+
+<DisplayEquation equation="\\begin{aligned}&{\\text{Electric avg energy density:}}&& \\langle u_E \\rangle={\\textstyle \\frac{1}{2}}\\varepsilon_0 E_{rms}^2 \\\\&{\\text{Magnetic avg energy density:}}&& \\langle u_B \\rangle={\\textstyle \\frac{1}{2 \\mu_0}} B_{rms}^2  \\end{aligned}" background="true" title="Replace field magnitudes with Root Mean Square (rms) values to get time-averaged energy densities:" />
+<CalloutContainer >
+            <CalloutCard title="rms values">
+			<p>For any sinusoidal signal with maximum value A<sub>max</sub>, the root mean square value is
+				A<sub>rms</sub>=A<sub>max</sub>/√2</p>
+            </CalloutCard>
+        </CalloutContainer>
+
+<DisplayEquation equation="\\begin{aligned}\\langle u_{total} \\rangle &={\\langle u_{E} \\rangle + \\langle u_{B} \\rangle} \\\\ &={{\\textstyle \\frac{1}{2}}\\varepsilon_0 E^2+{\\textstyle \\frac{1}{2 \\mu_0}} B_{rms}^2}  \\quad \\text{Use} \\; E=cB \\text{ to combine terms}\\\\ &={\\varepsilon_0 E_{rms}^2}  \\\\ &={\\textstyle \\frac{1}{\\mu_0}} B_{rms}^2\\end{aligned}" background="true" title="Total energy density is the sum of Electric and Magnetic field energy densities" />
+
+</SubSubSection>
+
+
+</Layout>
