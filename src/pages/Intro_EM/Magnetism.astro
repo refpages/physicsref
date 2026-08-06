@@ -48,6 +48,31 @@ import Col from "../../components/Col.astro";
 
 <p>I want to create a little simulation that lets students see x y and z axes and drag them around just to make sure they keep in a right-handed coordinate system.</p>
 
+<section class="axis-viz-wrap">
+  <iframe
+    src="/Intro_EM/Magnetism/3d-axis-visualization.html"
+    title="Interactive 3D coordinate axis diagram"
+    width="520"
+    height="720"
+    loading="lazy"
+    style="border: none; max-width: 100%;"
+  ></iframe>
+</section>
+ 
+<style>
+  .axis-viz-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+ 
+  .axis-viz-wrap iframe {
+    width: 100%;
+    max-width: 560px;
+  }
+</style>
+
+
 </SubSection> 
 
 <SubSection id="FB" title="Magnetic Force"> 
