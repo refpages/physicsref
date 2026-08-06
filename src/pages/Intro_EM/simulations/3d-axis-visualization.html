@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Axis Visualization</title>
+<style>
+  :root {
+    /* Okabe-Ito colorblind-safe palette, chosen + weighted for WCAG contrast on white */
+    --color-x: #D55E00; /* vermillion */
+    --color-y: #0072B2; /* blue */
+    --color-z: #009E73; /* bluish green */
+    --text-dark: #1a1a1a;
+    --text-mid: #3d3d3d;
+    --bg: #ffffff;
+    --panel-bg: #f4f4f4;
+    --border: #c9c9c9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 40px;
+  }
+  h1 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--text-dark);
+  }
+  p.subtitle {
+    margin: 0 0 20px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    text-align: center;
+    max-width: 480px;
+  }
+  #canvas-wrap {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    max-width: 480px;
+    width: 100%;
+  }
+  canvas {
+    display: block;
+    touch-action: none;
+    cursor: grab;
+    max-width: 100%;
+    height: auto;
+  }
+  canvas.dragging {
+    cursor: grabbing;
+  }
+  .controls {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 20px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px 12px;
+  }
+  .slider-row {
+    margin-bottom: 14px;
+  }
+  .slider-row label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .slider-row .value {
+    font-variant-numeric: tabular-nums;
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--text-dark);
+    cursor: pointer;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 4px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+  .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .description-panel {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 16px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .description-panel h2 {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-mid);
+  }
+  .description-panel p {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+  .description-panel .swatch {
+    margin-top: 3px;
+  }
+  button#resetBtn {
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--text-dark);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  button#resetBtn:hover { background: #000; }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+<h1>3D Axis Visualization</h1>
+<p class="subtitle">X and Y start flat in the screen plane; Z points toward you. Drag the diagram, or use the sliders, to rotate the axes.</p>
+
+<div id="canvas-wrap">
+  <canvas id="scene" width="480" height="420" role="img" aria-label="Interactive 3D coordinate axis diagram. A live text summary of each axis's direction is provided below."></canvas>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--color-x)" aria-hidden="true"></span>+X axis</span>
+  <span><span class="swatch" style="background:var(--color-y)" aria-hidden="true"></span>+Y axis</span>
+  <span><span class="swatch" style="background:var(--color-z)" aria-hidden="true"></span>+Z axis</span>
+</div>
+
+<div class="description-panel">
+  <h2>Where each axis points</h2>
+  <p><span class="swatch" style="background:var(--color-x)" aria-hidden="true"></span><span id="descX"></span></p>
+  <p><span class="swatch" style="background:var(--color-y)" aria-hidden="true"></span><span id="descY"></span></p>
+  <p><span class="swatch" style="background:var(--color-z)" aria-hidden="true"></span><span id="descZ"></span></p>
+  <p class="sr-only" id="liveDesc" aria-live="polite"></p>
+</div>
+
+<div class="controls">
+  <div class="slider-row">
+    <label for="yawSlider">Rotate about vertical screen axis (yaw) <span class="value" id="yawVal">0°</span></label>
+    <input type="range" id="yawSlider" min="-180" max="180" value="0" step="1"
+           aria-describedby="yawVal">
+  </div>
+  <div class="slider-row">
+    <label for="pitchSlider">Rotate about horizontal screen axis (pitch) <span class="value" id="pitchVal">0°</span></label>
+    <input type="range" id="pitchSlider" min="-180" max="180" value="0" step="1"
+           aria-describedby="pitchVal">
+  </div>
+  <button id="resetBtn" type="button">Reset view</button>
+</div>
+
+</main>
+
+<script>
+(function () {
+  const canvas = document.getElementById('scene');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const scale = 130;
+
+  const yawSlider = document.getElementById('yawSlider');
+  const pitchSlider = document.getElementById('pitchSlider');
+  const yawVal = document.getElementById('yawVal');
+  const pitchVal = document.getElementById('pitchVal');
+  const resetBtn = document.getElementById('resetBtn');
+  const descEls = {
+    x: document.getElementById('descX'),
+    y: document.getElementById('descY'),
+    z: document.getElementById('descZ')
+  };
+  const liveDesc = document.getElementById('liveDesc');
+
+  const COLORS = {
+    x: '#D55E00',
+    y: '#0072B2',
+    z: '#009E73'
+  };
+
+  // Base axis endpoints in world space.
+  // X horizontal in screen, Y vertical in screen, Z toward viewer.
+  const axes = [
+    { name: '+X', color: COLORS.x, dir: [1, 0, 0] },
+    { name: '+Y', color: COLORS.y, dir: [0, 1, 0] },
+    { name: '+Z', color: COLORS.z, dir: [0, 0, 1] }
+  ];
+
+  function toRad(deg) { return deg * Math.PI / 180; }
+
+  // Rotate about world/screen-fixed vertical axis (Y), then about
+  // world/screen-fixed horizontal axis (X). Both axes stay fixed in
+  // camera space regardless of current object orientation.
+  function rotate(point, yawDeg, pitchDeg) {
+    let [x, y, z] = point;
+    const yaw = toRad(yawDeg);
+    const pitch = toRad(pitchDeg);
+
+    // Yaw about vertical screen axis (Y)
+    let x1 = x * Math.cos(yaw) + z * Math.sin(yaw);
+    let y1 = y;
+    let z1 = -x * Math.sin(yaw) + z * Math.cos(yaw);
+
+    // Pitch about horizontal screen axis (X)
+    let x2 = x1;
+    let y2 = y1 * Math.cos(pitch) - z1 * Math.sin(pitch);
+    let z2 = y1 * Math.sin(pitch) + z1 * Math.cos(pitch);
+
+    return [x2, y2, z2];
+  }
+
+  function project(p) {
+    return { x: cx + p[0] * scale, y: cy - p[1] * scale, z: p[2] };
+  }
+
+  // Describe a rotated unit direction vector in plain-language screen
+  // terms: vertical (up/down), horizontal (left/right), and depth
+  // (into/out of the screen). Components smaller than the threshold
+  // are treated as zero and omitted (the axis lies flat along that
+  // dimension).
+  const DESC_THRESHOLD = 0.05;
+
+  function describeDirection(vec) {
+    const [x, y, z] = vec;
+    const parts = [];
+
+    if (y > DESC_THRESHOLD) parts.push('up');
+    else if (y < -DESC_THRESHOLD) parts.push('down');
+
+    if (x > DESC_THRESHOLD) parts.push('to the right');
+    else if (x < -DESC_THRESHOLD) parts.push('to the left');
+
+    if (z > DESC_THRESHOLD) parts.push('out of the screen');
+    else if (z < -DESC_THRESHOLD) parts.push('into the screen');
+
+    if (parts.length === 0) return 'at the origin';
+    if (parts.length === 1) return parts[0];
+    if (parts.length === 2) return parts[0] + ' and ' + parts[1];
+    return parts[0] + ', ' + parts[1] + ', and ' + parts[2];
+  }
+
+  function depthAlpha(z) {
+    // z ranges roughly -1..1 (toward viewer positive). Map to 0.45..1
+    const t = (z + 1) / 2;
+    return 0.45 + t * 0.55;
+  }
+
+  function depthWidth(z) {
+    const t = (z + 1) / 2;
+    return 2 + t * 2.5;
+  }
+
+  function drawGrid() {
+    ctx.save();
+    ctx.strokeStyle = '#e4e4e4';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale * 1.05, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawOrigin(originScreen) {
+    ctx.beginPath();
+    ctx.fillStyle = '#555555';
+    ctx.arc(originScreen.x, originScreen.y, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // How close (in unit-circle screen-radius terms) an axis tip must be
+  // to the origin before we treat it as pointing straight along the
+  // view direction and swap the arrow for the dot/cross symbol.
+  const ALIGN_THRESHOLD = 0.12;
+
+  function drawAlignedSymbol(axis, posEnd, originScreen) {
+    const towardViewer = posEnd[2] > 0;
+    const radius = 17;
+
+    ctx.save();
+    ctx.strokeStyle = axis.color;
+    ctx.fillStyle = axis.color;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+
+    // Outer circle
+    ctx.beginPath();
+    ctx.arc(originScreen.x, originScreen.y, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    if (towardViewer) {
+      // Axis points out of the screen toward the viewer: circle with a dot
+      ctx.beginPath();
+      ctx.arc(originScreen.x, originScreen.y, radius * 0.38, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      // Axis points into the screen away from the viewer: circle with an X
+      const d = radius * 0.68;
+      ctx.beginPath();
+      ctx.moveTo(originScreen.x - d, originScreen.y - d);
+      ctx.lineTo(originScreen.x + d, originScreen.y + d);
+      ctx.moveTo(originScreen.x + d, originScreen.y - d);
+      ctx.lineTo(originScreen.x - d, originScreen.y + d);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Label, offset diagonally from the symbol
+    ctx.save();
+    ctx.fillStyle = axis.color;
+    ctx.font = '700 20px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    const lx = originScreen.x + radius + 10;
+    const ly = originScreen.y - radius - 10;
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+    ctx.strokeText(axis.name, lx, ly);
+    ctx.fillText(axis.name, lx, ly);
+    ctx.restore();
+
+    return posEnd[2];
+  }
+
+  function drawAxis(axis, yaw, pitch, originScreen) {
+    const posEnd = rotate(axis.dir, yaw, pitch);
+    const negEnd = rotate([-axis.dir[0], -axis.dir[1], -axis.dir[2]], yaw, pitch);
+
+    const screenRadius = Math.sqrt(posEnd[0] * posEnd[0] + posEnd[1] * posEnd[1]);
+    if (screenRadius < ALIGN_THRESHOLD) {
+      return drawAlignedSymbol(axis, posEnd, originScreen);
+    }
+
+    const pPos = project(posEnd);
+    const pNeg = project(negEnd);
+
+    // Faint negative half
+    ctx.save();
+    ctx.strokeStyle = axis.color;
+    ctx.globalAlpha = 0.28;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(originScreen.x, originScreen.y);
+    ctx.lineTo(pNeg.x, pNeg.y);
+    ctx.stroke();
+    ctx.restore();
+
+    // Positive half (solid, depth-cued)
+    ctx.save();
+    ctx.strokeStyle = axis.color;
+    ctx.globalAlpha = depthAlpha(pPos.z);
+    ctx.lineWidth = depthWidth(pPos.z);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(originScreen.x, originScreen.y);
+    ctx.lineTo(pPos.x, pPos.y);
+    ctx.stroke();
+
+    // Arrowhead
+    const angle = Math.atan2(pPos.y - originScreen.y, pPos.x - originScreen.x);
+    const headLen = 20;
+    ctx.beginPath();
+    ctx.moveTo(pPos.x, pPos.y);
+    ctx.lineTo(
+      pPos.x - headLen * Math.cos(angle - Math.PI / 6.5),
+      pPos.y - headLen * Math.sin(angle - Math.PI / 6.5)
+    );
+    ctx.lineTo(
+      pPos.x - headLen * Math.cos(angle + Math.PI / 6.5),
+      pPos.y - headLen * Math.sin(angle + Math.PI / 6.5)
+    );
+    ctx.closePath();
+    ctx.fillStyle = axis.color;
+    ctx.fill();
+    ctx.restore();
+
+    // Label (bold + large so lower-contrast colors still meet WCAG
+    // "large text" 3:1 threshold against the white background)
+    ctx.save();
+    ctx.fillStyle = axis.color;
+    ctx.font = '700 20px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const lx = originScreen.x + (pPos.x - originScreen.x) * 1.22;
+    const ly = originScreen.y + (pPos.y - originScreen.y) * 1.22;
+    // subtle white halo behind label for extra legibility over any overlap
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+    ctx.strokeText(axis.name, lx, ly);
+    ctx.fillText(axis.name, lx, ly);
+    ctx.restore();
+
+    return pPos.z;
+  }
+
+  function render() {
+    const yaw = parseFloat(yawSlider.value);
+    const pitch = parseFloat(pitchSlider.value);
+    yawVal.textContent = yaw + '°';
+    pitchVal.textContent = pitch + '°';
+    yawSlider.setAttribute('aria-valuetext', yaw + ' degrees');
+    pitchSlider.setAttribute('aria-valuetext', pitch + ' degrees');
+
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+
+    const originScreen = { x: cx, y: cy };
+
+    // Painter's algorithm: draw farthest axis first
+    const withDepth = axes.map(a => {
+      const end = rotate(a.dir, yaw, pitch);
+      return { axis: a, z: project(end).z };
+    });
+    withDepth.sort((a, b) => a.z - b.z);
+
+    withDepth.forEach(item => {
+      drawAxis(item.axis, yaw, pitch, originScreen);
+    });
+
+    const anyAligned = withDepth.some(item => {
+      const end = rotate(item.axis.dir, yaw, pitch);
+      return Math.sqrt(end[0] * end[0] + end[1] * end[1]) < ALIGN_THRESHOLD;
+    });
+    if (!anyAligned) {
+      drawOrigin(originScreen);
+    }
+
+    axes.forEach(a => {
+      const end = rotate(a.dir, yaw, pitch);
+      const key = a.name.replace('+', '').toLowerCase();
+      if (descEls[key]) {
+        descEls[key].textContent = a.name + ' points ' + describeDirection(end) + '.';
+      }
+    });
+  }
+
+  // Announce the current orientation to screen reader users, but only
+  // once per completed interaction (drag release / slider commit) —
+  // announcing on every pointermove or 'input' tick would flood
+  // assistive tech with status messages while dragging.
+  function announceOrientation() {
+    if (!liveDesc) return;
+    liveDesc.textContent = Array.from(document.querySelectorAll(
+      '.description-panel p:not(.sr-only) span[id^="desc"]'
+    )).map(el => el.textContent).join(' ');
+  }
+
+  yawSlider.addEventListener('input', render);
+  pitchSlider.addEventListener('input', render);
+  yawSlider.addEventListener('change', announceOrientation);
+  pitchSlider.addEventListener('change', announceOrientation);
+  resetBtn.addEventListener('click', () => {
+    yawSlider.value = 0;
+    pitchSlider.value = 0;
+    render();
+    announceOrientation();
+  });
+
+  // --- Drag-to-rotate (mouse, touch, pen — via Pointer Events) ---
+  const DEG_PER_PIXEL = 0.4;
+  let dragging = false;
+  let lastX = 0, lastY = 0;
+
+  function clamp(v, min, max) {
+    return Math.min(max, Math.max(min, v));
+  }
+
+  function onPointerDown(e) {
+    dragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    canvas.classList.add('dragging');
+    canvas.setPointerCapture(e.pointerId);
+  }
+
+  function onPointerMove(e) {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    const newYaw = clamp(parseFloat(yawSlider.value) + dx * DEG_PER_PIXEL, -180, 180);
+    const newPitch = clamp(parseFloat(pitchSlider.value) + dy * DEG_PER_PIXEL, -180, 180);
+    yawSlider.value = newYaw;
+    pitchSlider.value = newPitch;
+    render();
+  }
+
+  function onPointerUp(e) {
+    if (!dragging) return;
+    dragging = false;
+    canvas.classList.remove('dragging');
+    try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    announceOrientation();
+  }
+
+  canvas.addEventListener('pointerdown', onPointerDown);
+  canvas.addEventListener('pointermove', onPointerMove);
+  canvas.addEventListener('pointerup', onPointerUp);
+  canvas.addEventListener('pointercancel', onPointerUp);
+
+  render();
+  announceOrientation();
+})();
+</script>
+</body>
+</html>
